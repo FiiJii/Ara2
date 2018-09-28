@@ -1,0 +1,140 @@
+
+{
+  "details": [
+    {
+      "imgOne": "assets/images/ltc.png",
+      "coinOne": "LTC",
+      "imgTwo": "assets/images/usdt.png",
+      "coinTwo": "USDT",
+      "amount":"USD$775",
+      "Commisions":"USD$0"
+    },
+    {
+      "imgOne": "assets/images/usdt.png",
+      "coinOne": "usdt",
+      "imgTwo": "assets/images/ltc.png",
+      "coinTwo": "LTC",
+      "amount":"USD$257",
+      "Commisions":"USD$0"
+    },
+    {
+      "imgOne": "assets/images/ltc.png",
+      "coinOne": "LTC",
+      "imgTwo": "assets/images/btc.png",
+      "coinTwo": "BTC",
+      "amount":"USD$772",
+      "Commisions":"USD$0"
+    },
+    {
+      "imgOne": "assets/images/ltc.png",
+      "coinOne": "LTC",
+      "imgTwo": "assets/images/usdt.png",
+      "coinTwo": "USDT",
+      "amount":"USD$555",
+      "Commisions":"USD$0"
+    },
+    {
+      "imgOne": "assets/images/btc.png",
+      "coinOne": "BTC",
+      "imgTwo": "assets/images/ltc.png",
+      "coinTwo": "LTC",
+      "amount":"USD$55",
+      "Commisions":"USD$0"
+    },{
+      "imgOne": "assets/images/ltc.png",
+      "coinOne": "LTC",
+      "imgTwo": "assets/images/usdt.png",
+      "coinTwo": "USDT",
+      "amount":"USD$4335",
+      "Commisions":"USD$0"
+    },
+    {
+      "imgOne": "assets/images/usdt.png",
+      "coinOne": "usdt",
+      "imgTwo": "assets/images/ltc.png",
+      "coinTwo": "LTC",
+      "amount":"USD$466",
+      "Commisions":"USD$0"
+    },
+    {
+      "imgOne": "assets/images/ltc.png",
+      "coinOne": "LTC",
+      "imgTwo": "assets/images/btc.png",
+      "coinTwo": "BTC",
+      "amount":"USD$555",
+      "Commisions":"USD$0"
+    },
+    {
+      "imgOne": "assets/images/ltc.png",
+      "coinOne": "LTC",
+      "imgTwo": "assets/images/usdt.png",
+      "coinTwo": "USDT",
+      "amount":"USD$335",
+      "Commisions":"USD$0"
+    },
+    {
+      "imgOne": "assets/images/btc.png",
+      "coinOne": "BTC",
+      "imgTwo": "assets/images/ltc.png",
+      "coinTwo": "LTC",
+      "amount":"USD$145",
+      "Commisions":"USD$0"
+    }
+  ],
+  "transactions": [
+    {
+      "id": "#123",
+      "creationData": "2018/09/10",
+      "Investment": "USD$200",
+      "Earnings": "USD$3"
+    },
+    {
+      "id": "#321",
+      "creationData": "2018/09/11",
+      "Investment": "USD$50",
+      "Earnings": "USD$10"
+    },
+    {
+      "id": "#231",
+      "creationData": "2018/09/12",
+      "Investment": "USD$40",
+      "Earnings": "USD$10"
+    },
+    {
+      "id": "#231",
+      "creationData": "2018/09/12",
+      "Investment": "USD$45",
+      "Earnings": "USD$5"
+    },
+    {
+      "id": "#123",
+      "creationData": "2018/09/18",
+      "Investment": "USD$200",
+      "Earnings": "USD$3"
+    },
+    {
+      "id": "#321",
+      "creationData": "2018/09/18",
+      "Investment": "USD$50",
+      "Earnings": "USD$10"
+    },
+    {
+      "id": "#231",
+      "creationData": "2018/09/18",
+      "Investment": "USD$40",
+      "Earnings": "USD$10"
+    },
+    {
+      "id": "#231",
+      "creationData": "2018/09/18",
+      "Investment": "USD$45",
+      "Earnings": "USD$5"
+    },
+    {
+      "id": "#123",
+      "creationData": "2018/09/20",
+      "Investment": "USD$200",
+      "Earnings": "USD$3"
+    }
+  ]
+}
