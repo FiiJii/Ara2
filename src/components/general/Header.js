@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { MdMenu } from 'react-icons/md';
-
 import '../../styles/components/header.css';
 
 class Header extends Component {

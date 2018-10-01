@@ -1,15 +1,14 @@
 
 import API from '../../api'
 
-export const transactions = (success) => ( dispatch ) => {
-  API.get(`api/trading/transactions/`)
+export const transactions = (success,page) => ( dispatch ) => {
+  API.get(`api/trading/transactions?page=`+page)
   .then(response => {
     if (response.code === 200 ) {
       success(true, response.data)
     }else {
       success(false,[],response.message)
     }
-      console.log(response.data)
   })
 
 
@@ -29,12 +28,12 @@ export const transactions = (success) => ( dispatch ) => {
 
 }
 export const details = (success, id ) => ( dispatch ) => {
-API.get(`/api/trading/transaction_details/?transaction=${id}`).then(response => {
-if(response.code === 200){
-  success(response)
+  API.get(`/api/trading/transaction_details/?transaction=${id}`).then(response => {
+    if(response.code === 200){
+      success(response)
 
-}else{
-console.log(response)
-}
-})
+    }else{
+      console.log(response)
+    }
+  })
 }

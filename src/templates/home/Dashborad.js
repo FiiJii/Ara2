@@ -4,7 +4,6 @@ import Header from '../../components/general/Header';
 import Details from './details.json'
 import { transactions } from '../../ducks/dashboard';
 import { connect } from 'react-redux';
-
 import '../../styles/templates/dashborad.css';
 
 
@@ -13,23 +12,44 @@ class Dashborad extends Component {
     super(props)
     this.state={
       transactions: [],
-      load: true
+      load: true,
+      page: 1,
+      item: 10,
+      count: 0
     }
   }
   componentWillMount(){
     this.setState({load: true})
-    this.props.transactions(this.transactionsList)
+    this.props.transactions(this.transactionsList,this.state.page)
   }
 
   transactionsList = (bool, transactionsValue, message) => {
     if (bool) {
-      console.log(bool);
-      console.log(transactionsValue);
-      this.setState({transactions: transactionsValue.results, load: false})
+      const arrayData = this.state.page > 1 ? [...this.state.transactions, ...transactionsValue.results] : null
+      this.setState({
+        transactions: this.state.page === 1 ? transactionsValue.results : arrayData,
+        load: false,
+        count: transactionsValue.count
+      })
     }
-    console.log('lista',transactionsValue);
+  }
+  changePage = () =>{
+    this.setState({
+      page: ++ this.state.page,
+      item: this.state.item + 10
+    })
+    this.props.transactions(this.transactionsList,this.state.page)
   }
     render() {
+        if(this.state.count > 0){
+          if(this.state.item < this.state.count){
+            var next = false
+          }else{
+            var next = true
+          }
+        }else{
+          var next = true;
+        }
         return (
           <div history={this.props.history}>
             <Header history={this.props.history}/>
@@ -61,6 +81,14 @@ class Dashborad extends Component {
                 }
               </div>;
             </div>
+          </div>
+          <div className="total-center">
+            <button
+              type="button"
+              className={next ? "buttonFalse" : "button" }
+              onClick={this.changePage}
+              disabled={next}
+              >see more</button>
           </div>
           </div>
         )

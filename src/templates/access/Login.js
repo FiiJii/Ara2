@@ -59,7 +59,6 @@ class Login extends Component {
                    placeholder="Username - Email"
                    value={this.state.email}
                    onChange={(event) => this.setState({email: event.target.value})}
-
                    />
               </div>
               <div>
@@ -69,6 +68,7 @@ class Login extends Component {
                   placeholder="Password"
                   value={this.state.password}
                   onChange={(event) => this.setState({password: event.target.value})}
+                  onKeyPress={this.loginActive}
                   />
               </div>
               {
@@ -77,7 +77,7 @@ class Login extends Component {
                   <CircularProgress/>
                 </div>
                 :
-                <button type="button" className="button-login" onClick={this.loginActive}>ENTER</button>
+                <button type="button" className="button" onClick={this.loginActive}>ENTER</button>
               }
             </div>
           </div>

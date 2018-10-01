@@ -23,7 +23,6 @@
   width: 100%;
   min-width: 100px;
   height: 30px;
-
 }
 .itemes-details{
   display: none;
@@ -40,10 +39,12 @@
   font-family: 'Quicksand';
   font-size: 14pt;
   display: grid;
-  grid-template-columns: 50px 35px 10px 35px 50px;
+  grid-template-columns:  35px 10px 35px;
   grid-template-rows: 50px;
   align-items: center;
   justify-items: center;
+  color: #FFF
+  
 }
 #amount{
   color: #8BC34A
@@ -51,9 +52,19 @@
 #commisions{
   color: #607D8B
 }
+.name-coin-responsive{
+  display: none
+}
 @media screen and (max-width: 768px) {
+  .name-coin-responsive{
+    display: block;
+  }
   .itemes-details{
     display: block;
+  }
+  .value-details-parity{
+    grid-template-columns: 50px 35px 10px 35px 50px;
+    color: #FFF
   }
   .container-details{
     width: 100%;

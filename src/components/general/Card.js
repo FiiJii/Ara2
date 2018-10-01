@@ -17,12 +17,14 @@ const Card = (props) => {
         </div>
         <div className="container-text-card">
           <p className="itemes-card">Investment: </p>
-          <p className="value-card" id="Investment">{ new Intl.NumberFormat('en-GB', {
+          <p className="value-card" id="Investment">
+            { new Intl.NumberFormat('en-GB', {
           style: 'currency',
           currency: 'USD',
           minimumFractionDigits: 0,
           maximumFractionDigits: 0
-        }).format(props.investment)}</p>
+        }).format(props.investment)}
+      </p>
         </div>
         <div className="container-text-card">
           <p className="itemes-card">Earnings: </p>
