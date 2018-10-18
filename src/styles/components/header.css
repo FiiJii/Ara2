@@ -3,7 +3,7 @@
   height: 70px;
   background-color: #17202A;
   display: grid;
-  grid-template-columns: 5fr 0.5fr 0.5fr;
+  grid-template-columns: 5fr 0.5fr 0.5fr 0.5fr;
   grid-template-rows: auto;
   align-items: center;
 }
@@ -31,8 +31,17 @@
   font-weight: 400;
   font-size: 12pt;
   min-width: 100px;
-  text-align: center
+  text-align: center;
+  display: inline-block;
+  color: white;
+  text-decoration: none;
 }
+
+.items-text-header-active:hover, .items-text-header-active:focus {
+  text-decoration: none;
+  color: white;
+}
+
 .items-header-menu, .header-responsive{
   display: none
 }

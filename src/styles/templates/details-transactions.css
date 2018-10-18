@@ -3,7 +3,7 @@
   max-width: 1200px;
   padding-left: 15px;
   padding-right: 15px;
-  padding-top: 50px;
+  padding-top: 20px;
 }
 .header-titles-details{
   display: grid;
@@ -22,13 +22,25 @@
   grid-auto-rows: auto
 }
 .container-details-transactions > .subtitle-session{
-  margin-top: 20px;
-  margin-bottom: 50px;
+  margin-top: 15px;
+  margin-bottom: 40px;
 }
 .details-id{
   color: #29B6F6;
   font-family: 'Montserrat';
   font-weight: 600;
+}
+.icon-back{
+  color: #FFF;
+  font-size: 25px;
+  padding-top: 5px;
+}
+.container-title{
+  width: 100%;
+  max-width: 300px;
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  align-items: start;
 }
 @media screen and (max-width: 768px) {
   .header-value-details, .header-titles-details{

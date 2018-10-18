@@ -20,17 +20,3 @@
   padding-left: 30px;
   font-family: 'Quicksand';
 }
-.button-login{
-  margin-top: 50px;
-  width: 100%;
-  height: 35px;
-  border: none;
-  border-radius: 15px;
-  background: #64C0EA;
-  text-align: center;
-  line-height: 35px;
-  color: #FFF;
-  font-family: 'Montserrat';
-  font-weight: 600;
-  font-weight: bold;
-}

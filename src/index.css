@@ -47,3 +47,33 @@ p{
   font-family: 'Montserrat';
   font-weight: 300;
 }
+.button{
+  margin-top: 20px;
+  width: 100%;
+  max-width: 320px;
+  height: 40px;
+  border: none;
+  border-radius: 15px;
+  background: #64C0EA;
+  text-align: center;
+  line-height: 40px;
+  color: #FFF;
+  font-family: 'Montserrat';
+  font-weight: 600;
+  font-weight: bold;
+}
+.buttonFalse {
+  margin-top: 20px;
+  width: 100%;
+  max-width: 320px;
+  height: 40px;
+  border: none;
+  border-radius: 15px;
+  background: grey;
+  text-align: center;
+  line-height: 40px;
+  color: #FFF;
+  font-family: 'Montserrat';
+  font-weight: 600;
+  font-weight: bold;
+}

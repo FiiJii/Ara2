@@ -1,0 +1,122 @@
+.container-Dashboard{
+  padding-top: 20px;
+  width: 100%;
+  max-width: 1200px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.header-titles-Dashboard{
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  grid-template-rows: 50px;
+  align-items: center;
+}
+.header-value-details{
+  text-align: center;
+  font-family: 'Montserrat';
+  font-weight: 600;
+  font-size: 14pt;
+}
+.container-Dashboard > .subtitle-session{
+  margin-top: 15px;
+  margin-bottom: 40px;
+}
+.grid-Dashboard{
+  display: grid;
+  grid-auto-rows: auto;
+  max-height: 50vh;
+  min-height: 50vh;
+  overflow: auto;
+}
+@media screen and (max-width: 768px) {
+  .header-titles-Dashboard, .header-value-details{
+    display: none
+  }
+  .grid-Dashboard{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: auto;
+    grid-column-gap:  5px;
+  }
+}
+@media screen and (max-width: 620px) {
+  .grid-Dashboard{
+    grid-template-columns: 1fr;
+  }
+  .container-Dashboard > .subtitle-session{
+    text-align: center;
+  }
+}
+
+.button-add {
+  margin-top: 35px;
+  width: 20%;
+  max-width: 320px;
+  height: 40px;
+  border: none;
+  border-radius: 15px;
+  background: #64C0EA;
+  text-align: center;
+  line-height: 40px;
+  color: #FFF;
+  font-family: 'Montserrat';
+  font-weight: 600;
+  font-weight: bold;
+}
+
+.button-remove {
+  width: 80px;
+  max-width: 320px;
+  height: 40px;
+  border: none;
+  border-radius: 15px;
+  background: #64C0EA;
+  text-align: center;
+  line-height: 40px;
+  color: #FFF;
+  font-family: 'Montserrat';
+  font-weight: 600;
+  font-weight: bold;
+}
+
+.select {
+  width: 50%;
+  color: blue;
+  margin-right: 100px;
+  margin-left: 200px;
+  margin-top: 35px;
+}
+
+.settings {
+  margin-left: 150px;
+  text-align: right;
+  font-family: 'Montserrat';
+  font-weight: 600;
+  font-size: 14pt;
+}
+
+.settings-input {
+  margin-left: 20px;
+  border-radius: 15px;
+}
+
+.switch-on {
+  color: green;
+  margin-left: 20px;
+  font-weight: bold;
+  border-radius: 15px;
+}
+
+.switch-off {
+  color: red;
+  font-weight: bold;
+  border-radius: 15px;
+}
+
+.grid-container {
+  grid-auto-rows: 45%;
+}
+
+.tab {
+  font-weight: bold;
+}

@@ -1,0 +1,15 @@
+.show-grid {
+  margin: 0;
+}
+
+#outlined-coin-native-simple {
+  background-color: white;
+  width: 50px;
+}
+
+.container-title-settings {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  align-items: start;
+}
