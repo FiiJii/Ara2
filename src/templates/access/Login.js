@@ -52,7 +52,7 @@ class Login extends Component {
           <div className="container-login" history={this.props.history}>
             <div className="group-form">
               <p className="title-session text-white "><span className="title-ligth">BOT </span>TRADING.</p>
-              <div className="margin-top">
+              <div className="margin-top total-center">
                 <input
                   className="form-login"
                    type="text"
@@ -61,7 +61,7 @@ class Login extends Component {
                    onChange={(event) => this.setState({email: event.target.value})}
                    />
               </div>
-              <div>
+              <div className="total-center">
                 <input
                   className="form-login"
                   type="password"

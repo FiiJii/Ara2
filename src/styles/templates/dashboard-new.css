@@ -1,0 +1,44 @@
+.container-Dashboard-new {
+    padding-top: 20px;
+    width: 100%;
+    max-width: 1400px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.container-header-board{
+  display: grid;
+  grid-template-columns: repeat(15, 1fr)
+}
+.text-head-board{
+    font-family: 'Quicksand';
+    font-size: 9pt;
+    line-height: 50px;
+    text-align: center;
+    white-space: nowrap;
+    width: 98%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #29B6F6;
+}
+.container-Dashboard>.subtitle-session {
+    margin-top: 15px;
+    margin-bottom: 40px;
+}
+.container-board{
+  display: block
+}
+@media screen and (max-width: 992px){
+  .container-board {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(305px, 1fr));
+    justify-items: center
+  }
+  .container-header-board {
+    display: none
+  }
+}
+@media screen and (max-width: 620px) {
+  .container-Dashboard > .subtitle-session{
+    text-align: center;
+  }
+}
