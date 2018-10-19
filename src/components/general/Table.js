@@ -3,7 +3,7 @@ import '../../styles/components/card.css';
 
 const Table = ({id, symbol, name, handleClick}) => {
   return (
-    <div className="container-card opacity">
+    <div className="container-settings">
       <div className="container-text-card">
         <p className="itemes-card">Coin: </p>
         <p className="value-card" symbol="symbol">{symbol}</p>

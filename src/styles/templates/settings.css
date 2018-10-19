@@ -3,8 +3,12 @@
 }
 
 #outlined-coin-native-simple {
-  background-color: white;
-  width: 50px;
+  background-color: #f7f1f129;
+  font-size: 15px;
+  color: black;
+  padding-top: 0;
+  font-family: 'Montserrat';
+  font-weight: bold;
 }
 
 .container-title-settings {
@@ -12,4 +16,228 @@
   display: grid;
   grid-template-columns: 40px 1fr;
   align-items: start;
+}
+
+.grid-settings{
+  display: grid;
+  grid-auto-rows: auto;
+  max-height: 50vh;
+  min-height: 50vh;
+  overflow: auto;
+}
+
+@media screen and (max-width: 768px) {
+  .header-titles-settings, .header-value-details{
+    display: none
+  }
+  .grid-settings{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: auto;
+    grid-column-gap:  5px;
+  }
+}
+
+@media screen and (max-width: 620px) {
+  .grid-settings{
+    grid-template-columns: 1fr;
+  }
+.container-settings > .subtitle-session{
+  text-align: center;
+  }
+}
+
+.grid-settings-title {
+  width: 100%;
+  height: 50px;
+  display: grid;
+  grid-template-columns: 30% 40% 30%;
+  text-align: center;
+  vertical-align: middle;
+  margin-top: 50px;
+}
+
+.container-settings{
+  width: 100%;
+  height: 50px;
+  border-radius: 10px;
+  background-color: #17202a;
+  -webkit-box-shadow: 0px 0px 34px -8px rgba(23,32,42,1);
+  -moz-box-shadow: 0px 0px 34px -8px rgba(23,32,42,1);
+  box-shadow: 0px 0px 34px -8px rgba(23,32,42,1);
+  display: grid;
+  grid-template-columns: 30% 40% 30%;
+  text-align: center;
+}
+
+.button-add {
+  width: 60px;
+  max-width: 320px;
+  height: 40px;
+  border: none;
+  border-radius: 15px;
+  background: #64C0EA;
+  text-align: center;
+  line-height: 40px;
+  color: #FFF;
+  font-family: 'Montserrat';
+  font-weight: 600;
+  font-weight: bold;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 10px;
+}
+
+.button-remove {
+  width: 80px;
+  max-width: 320px;
+  height: 40px;
+  border: none;
+  border-radius: 15px;
+  background: #64C0EA;
+  text-align: center;
+  line-height: 40px;
+  color: #FFF;
+  font-family: 'Montserrat';
+  font-weight: 600;
+  font-weight: bold;
+}
+
+.add-currency-form {
+  width: 100%;
+  color: blue;
+  margin-right: 100px;
+  margin-top: 65px;
+  text-align: center;
+}
+
+.settings {
+  margin-left: 150px;
+  text-align: right;
+  font-family: 'Montserrat';
+  font-weight: 600;
+  font-size: 14pt;
+}
+
+.settings-input {
+  margin-left: 20px;
+  border-radius: 15px;
+}
+
+.switch-on {
+  color: green;
+  margin-left: 20px;
+  font-weight: bold;
+  border-radius: 15px;
+}
+
+.switch-off {
+  color: red;
+  font-weight: bold;
+  border-radius: 15px;
+}
+
+.grid-container {
+  grid-auto-rows: 45%;
+}
+
+.tab {
+  font-weight: bold;
+}
+
+
+#menu [class*="MuiTab-root"] {
+  height: 65px;
+  line-height: 65px;
+  font-family: 'Montserrat';
+  font-weight: 400;
+  font-size: 12pt;
+  min-width: 100px;
+  text-align: center;
+  display: inline-block;
+  color: white;
+  text-decoration: none;
+}
+
+#menu [class*="MuiTabs-flexContainer"] {
+  background-color: #252A38;
+  border-style: hidden;
+}
+
+#menu [class*="TabIndicator-root"] {
+  border-bottom: 2px #29B6F6 solid;
+}
+
+#menu {
+  box-shadow: none;
+}
+
+form [class*="MuiFormLabel"] {
+  line-height: 0;
+}
+
+form [class*=".MuiInputBase-input"] {
+  display: inline-block;
+}
+
+form [class*="MuiInputLabel-outlined"] {
+  height: 10px;
+  width: 100%;
+}
+
+form [class*="MuiFormLabel-root"] {
+  font-size: 2rem;
+  color: white;
+}
+
+form [class*=".MuiSelect-icon"] {
+  color: rgb(240, 240, 240);
+}
+
+form [class*="MuiSelect-select"] {
+  width: 100%;
+  box-sizing: border-box;
+  height: 40px;
+}
+
+form [class*="MuiSelect-select"], form [class*="MuiSelect-select"]:focus {
+  border-radius: 15px;
+}
+
+.subtitle-session{
+  margin-top: 15px;
+  margin-bottom: 40px;
+}
+
+.icon-back {
+  margin-top: 20px;
+}
+
+.selector {
+  display: inline-block;
+  vertical-align: middle;
+  height: 10%;
+  width: 100%;
+}
+
+.formControl {
+  display: inline-block;
+  vertical-align: middle;
+  width: 20%;
+}
+
+.input-label {
+  width: calc(100% - 28px);
+  font-size: 20px;
+  text-decoration-style: double;
+  text-align: left;
+  border-radius: 15px;
+}
+
+.filled {
+  width: 100%;
+}
+
+.header-titles-settings {
+  margin-top: 50px;
 }

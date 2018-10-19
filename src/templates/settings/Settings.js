@@ -151,39 +151,39 @@ class Settings extends Component {
     console.log('currency', currency);
     return (
       <DefaultLayout history={this.props.history}>
-        <div>
-          <p className="title-session text-center" ><span className="title-ligth">Bot </span>Transactions</p>
-        </div>
-
         <div className="total-center">
-          <div class="container-Dashboard">
+          <div className="container-Dashboard">
+            <div>
+              <p className="title-session text-center" ><span className="title-ligth">Bot </span>Settings</p>
+            </div>
 
             <div className="container-title-settings">
               <Tooltip title="Go back" placement="left-start" >
                 < MdArrowBack className="icon-back opacity" onClick={()=>this.props.history.push('/dashboard')}/>
               </Tooltip>
-              <p className="subtitle-session" > Transactions Settings <br/>
-              </p>
+              <p className="subtitle-session" > Back to home <br/></p>
             </div>
             <div className={classes.root}>
-              <AppBar position="static" color="default">
+              <AppBar position="static" color="default" id="menu">
                 <Tabs
                   value={value}
                   onChange={this.handleChangeTab}
                   indicatorColor="primary"
                   textColor="primary"
                   centered
+                  scrollButtons="auto"
                 >
-                  <Tab label="Currencies" />
+                  <Tab label="Currencies" opacity/>
                   <Tab label="General" />
                 </Tabs>
               </AppBar>
               {value === 0 && <div>
-                <Row className="show-grid">
-                  <Col sm={4}>
-                    <form className='select' autoComplete="off">
-                      <FormControl variant="outlined">
+
+
+                    <form className='add-currency-form' autoComplete="off">
+                      <FormControl className="formControl" variant="outlined">
                         <InputLabel
+                          className="input-label"
                           ref={ref => {
                             this.labelRef = ReactDOM.findDOMNode(ref);
                           }}
@@ -192,12 +192,14 @@ class Settings extends Component {
                           Select coin
                         </InputLabel>
                         <Select
+                          className="selector"
                           native
                           value={currency}
                           onChange={this.handleChange}
                           name="currency"
                           input={
                             <FilledInput
+                              className="filled"
                               labelWidth={this.labelRef ? this.labelRef.offsetWidth : 0}
                               id="outlined-coin-native-simple"
                             />
@@ -211,25 +213,21 @@ class Settings extends Component {
                           }
                         </Select>
                       </FormControl>
+                      <button
+                          type="button"
+                          className="button-add"
+                          onClick={this.addCurrencyToBot}
+                        >
+                          Add
+                      </button>
                     </form>
-                  </Col>
-                  <Col sm={4}>
-                    <button
-                        type="button"
-                        className="button-add"
-                        onClick={this.addCurrencyToBot}
-                      >
-                        Add
-                    </button>
-                  </Col>
-                  <Col sm={4}>
-                  </Col>
-                </Row>
-                <div className="header-titles-Dashboard">
+
+                <div className="grid-settings-title">
                   <p className="header-value-details">Coin</p>
                   <p className="header-value-details">Description</p>
+                  <p className="header-value-details">Action</p>
                 </div>
-                <div className="grid-Dashboard">
+                <div className="grid-settings">
                   {
                     this.props.botCurrencies.map(({id, name, symbol}, key) =>{
                       return(
