@@ -14,13 +14,16 @@ class Login extends Component {
       load: false
     }
   }
-  loginActive = () => {
+  loginActive = (e) => {
+   var tecla = (document.all) ? e.keyCode : e.which;
+    if (tecla == 13) {
+      this.props.loginSuccess(this.state.email, this.state.password, this.successLogin)
+      this.setState({ load: true })
+    };
     if (this.state.email === "" && this.state.password === "") {
-      console.log("hola");
       return
     }
     if (this.state.email === "" ) {
-      console.log("email");
       return
     }
     // else{
@@ -34,8 +37,6 @@ class Login extends Component {
       console.log("password");
       return
     }
-    this.props.loginSuccess(this.state.email,this.state.password, this.successLogin)
-    this.setState({load: true})
   }
   successLogin = (bool) =>{
     if (bool === true) {

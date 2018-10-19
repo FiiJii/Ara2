@@ -4,67 +4,71 @@ import '../../styles/components/row-board.css';
 const RowBoard = (props) => {
 
   return (
-    <div className="container-row-board " onClick={()=>props.history.push('/details-transactions/'+props.id)}>
+    <div className="container-row-board " >
       <div className="container-text-row-board">
-        <p className="itemes-row-board">Symbol: </p>
-        <p className="value-row-board" >ETH - USDT</p>
+              <p className="itemes-row-board">{props.headtext1}</p>
+              <p className="value-row-board" >{props.boddyText1}</p>
       </div>
           <div className="container-text-row-board">
-              <p className="itemes-row-board">Name: </p>
-              <p className="value-row-board" >Ethereum</p>
+              <p className="itemes-row-board">{props.headtext2}</p>
+              <p className="value-row-board" >{props.boddyText2}</p>
           </div>
           <div className="container-text-row-board">
-              <p className="itemes-row-board">%changes 24h: </p>
-              <p className="value-row-board" >-0.73</p>
+              <p className="itemes-row-board">{props.headtext3}</p>
+              <p className="value-row-board" >{props.boddyText3}</p>
           </div>
           <div className="container-text-row-board">
-              <p className="itemes-row-board">Last: </p>
-              <p className="value-row-board" >450.55</p>
+              <p className="itemes-row-board">{props.headtext4}</p>
+              <p className="value-row-board" >{props.boddyText4}</p>
           </div>
           <div className="container-text-row-board">
-              <p className="itemes-row-board">Bid: </p>
-              <p className="value-row-board" >449.85</p>
+              <p className="itemes-row-board">{props.headtext5}</p>
+              <p className="value-row-board" >{props.boddyText5}</p>
           </div>
           <div className="container-text-row-board">
-              <p className="itemes-row-board">Ask: </p>
-              <p className="value-row-board" >451.25</p>
+              <p className="itemes-row-board">{props.headtext6}</p>
+              <p className="value-row-board" >{props.boddyText6}</p>
           </div>
           <div className="container-text-row-board">
-              <p className="itemes-row-board">Volume: </p>
-              <p className="value-row-board" >125,000</p>
+              <p className="itemes-row-board">{props.headtext7}</p>
+              <p className="value-row-board" >{props.boddyText7}</p>
           </div>
           <div className="container-text-row-board">
-              <p className="itemes-row-board">$Volume: </p>
-              <p className="value-row-board" >$56.000.000</p>
+              <p className="itemes-row-board">{props.headtext8}</p>
+              <p className="value-row-board" >{props.boddyText8}</p>
           </div>
           <div className="container-text-row-board">
-              <p className="itemes-row-board">Avg Tx Vol 60s: </p>
-              <p className="value-row-board" >$258.33</p>
+              <p className="itemes-row-board">{props.headtext9}</p>
+              <p className="value-row-board" >{props.boddyText9}</p>
           </div>
           <div className="container-text-row-board">
-              <p className="itemes-row-board">Avg Tx Vol 1hr: </p>
-              <p className="value-row-board" >$214.85</p>
+              <p className="itemes-row-board">{props.headtext10}</p>
+              <p className="value-row-board" >{props.boddyText10}</p>
           </div>
           <div className="container-text-row-board">
-              <p className="itemes-row-board">Avg Tx Vol 6hr: </p>
-              <p className="value-row-board" >$314.39</p>
+              <p className="itemes-row-board">{props.headtext11}</p>
+              <p className="value-row-board" >{props.boddyText11}</p>
           </div>
           <div className="container-text-row-board">
-              <p className="itemes-row-board">Avg Tx Vol 6hr:</p>
-              <p className="value-row-board" >$387.22</p>
+              <p className="itemes-row-board">{props.headtext12}</p>
+              <p className="value-row-board" >{props.boddyText12}</p>
           </div>
           <div className="container-text-row-board">
-              <p className="itemes-row-board">Avg Tx Vol 12hr:</p>
-              <p className="value-row-board" >$186.19</p>
+              <p className="itemes-row-board">{props.headtext13}</p>
+              <p className="value-row-board" >{props.boddyText13}</p>
           </div>
           <div className="container-text-row-board">
-              <p className="itemes-row-board">Avg Tx Vol 24hr:</p>
-              <p className="value-row-board" >$349.76</p>
+              <p className="itemes-row-board">{props.headtext14}</p>
+              <p className="value-row-board" >{props.boddyText14}</p>
           </div>
           <div className="container-text-row-board">
-        <p className="itemes-row-board">R/V</p>
-        <p className="value-row-board" >rojo</p>
-      </div>
+            <p className="itemes-row-board">{props.headtext15}</p>
+            <p className="value-row-board" >
+                <div className="container-red-green">
+                      <div className={props.boddyText15 === 'green' ? "green" : props.boddyText15 === 'red' ? "red" : null}></div>
+                </div>
+            </p>
+        </div>
 
     </div>
   )

@@ -25,7 +25,28 @@
     margin-bottom: 40px;
 }
 .container-board{
-  display: block
+  display: block;
+  margin-top: 20px;
+}
+.box-titles-tabs{
+  display: flex;
+  width: 100%;
+  max-width: 200px;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+.title-tab{
+  width: 100px;
+  font-family: 'Montserrat';
+  font-weight: 600;
+  font-size: 18pt;
+  cursor: pointer ;
+  color: #bdbdbd;
+  text-align: center
+}
+.title-tab-on{
+  color: #29B6F6;
+  border-bottom: solid #29B6F6 1px
 }
 @media screen and (max-width: 992px){
   .container-board {
