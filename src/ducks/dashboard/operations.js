@@ -1,5 +1,16 @@
-
 import API from '../../api'
+
+
+export const newTransactions = (success) => ( dispatch ) => {
+  API.get(`api/trading/transaction_details/averages/`)
+  .then(response => {
+    if (response.code === 200 ) {
+      success(true, response.data)
+    }else {
+      success(false,[],response.message)
+    }
+  })
+}
 
 export const transactions = (success,page) => ( dispatch ) => {
   API.get(`api/trading/transactions?page=`+page)

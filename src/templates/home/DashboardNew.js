@@ -1,13 +1,33 @@
-import React, { Component } from 'react';
-import RowBoard from '../../components/general/RowBoard';
-import DefaultLayout from '../../layouts/DefaultLayout';
-import '../../styles/templates/dashboard-new.css';
+import React, { Component } from 'react'
+import RowBoard from '../../components/general/RowBoard'
+import DefaultLayout from '../../layouts/DefaultLayout'
+import { connect } from 'react-redux'
+import { newTransactions } from '../../ducks/dashboard';
+
+import '../../styles/templates/dashboard-new.css'
 
 class DashboardNew extends Component {
   constructor(props){
     super(props)
     this.state={
+      transactionList: []
     }
+  }
+
+  componentWillMount(){
+    //this.setState({load: true})
+    this.props.newTransactions(this.transactionsList,this.state.page)
+  }
+
+  transactionsList = (bool, transactionsValue, message) => {
+    if(bool) {
+        console.log(transactionsValue)
+        this.setState({
+          "transactionList": transactionsValue
+        })
+    }
+
+
   }
 
     render() {
@@ -37,134 +57,78 @@ class DashboardNew extends Component {
                               <p className="text-head-board">Avg Tx Vol 24hr</p>
                               <p className="text-head-board">R/V</p>
                           </div>
-                          <RowBoard 
-                            headtext1="Symbol"
-                            boddyText1="ETH - USDT"
-                            headtext2="Name"
-                            boddyText2="Ethereum"
-                            headtext3="%changes 24h"
-                            boddyText3="-0.73"
-                            headtext4="Last"
-                            boddyText4="450.55"
-                            headtext5="Bid"
-                            boddyText5="449.85"
-                            headtext6="Ask"
-                            boddyText6="451.25"
-                            headtext7="Volume"
-                            boddyText7="125,000"
-                            headtext8="$Volume"
-                            boddyText8="$56.000.000"
-                            headtext9="Avg Tx Vol 60s"
-                            boddyText9="$258.33"
-                            headtext10="Avg Tx Vol 1hr"
-                            boddyText10="$214.85"
-                            headtext11="Avg Tx Vol 6hr"
-                            boddyText11="$314.39"
-                            headtext12="Avg Tx Vol 6hr"
-                            boddyText12="$387.22"
-                            headtext13="Avg Tx Vol 12hr"
-                            boddyText13="$186.19"
-                            headtext14="Avg Tx Vol 24hr"
-                            boddyText14="$349.76"
-                            headtext15="R/V"
-                            boddyText15='red'
-                          />
-                      <RowBoard
-                        headtext1="Symbol"
-                        boddyText1="ETH - USDT"
-                        headtext2="Name"
-                        boddyText2="Ethereum"
-                        headtext3="%changes 24h"
-                        boddyText3="-0.73"
-                        headtext4="Last"
-                        boddyText4="450.55"
-                        headtext5="Bid"
-                        boddyText5="449.85"
-                        headtext6="Ask"
-                        boddyText6="451.25"
-                        headtext7="Volume"
-                        boddyText7="125,000"
-                        headtext8="$Volume"
-                        boddyText8="$56.000.000"
-                        headtext9="Avg Tx Vol 60s"
-                        boddyText9="$258.33"
-                        headtext10="Avg Tx Vol 1hr"
-                        boddyText10="$214.85"
-                        headtext11="Avg Tx Vol 6hr"
-                        boddyText11="$314.39"
-                        headtext12="Avg Tx Vol 6hr"
-                        boddyText12="$387.22"
-                        headtext13="Avg Tx Vol 12hr"
-                        boddyText13="$186.19"
-                        headtext14="Avg Tx Vol 24hr"
-                        boddyText14="$349.76"
-                        headtext15="R/V"
-                        boddyText15="red"
-                      />
-                      <RowBoard
-                        headtext1="Symbol"
-                        boddyText1="ETH - USDT"
-                        headtext2="Name"
-                        boddyText2="Ethereum"
-                        headtext3="%changes 24h"
-                        boddyText3="-0.73"
-                        headtext4="Last"
-                        boddyText4="450.55"
-                        headtext5="Bid"
-                        boddyText5="449.85"
-                        headtext6="Ask"
-                        boddyText6="451.25"
-                        headtext7="Volume"
-                        boddyText7="125,000"
-                        headtext8="$Volume"
-                        boddyText8="$56.000.000"
-                        headtext9="Avg Tx Vol 60s"
-                        boddyText9="$258.33"
-                        headtext10="Avg Tx Vol 1hr"
-                        boddyText10="$214.85"
-                        headtext11="Avg Tx Vol 6hr"
-                        boddyText11="$314.39"
-                        headtext12="Avg Tx Vol 6hr"
-                        boddyText12="$387.22"
-                        headtext13="Avg Tx Vol 12hr"
-                        boddyText13="$186.19"
-                        headtext14="Avg Tx Vol 24hr"
-                        boddyText14="$349.76"
-                        headtext15="R/V"
-                        boddyText15='green'
-                      />
-                      <RowBoard
-                        headtext1="Symbol"
-                        boddyText1="ETH - USDT"
-                        headtext2="Name"
-                        boddyText2="Ethereum"
-                        headtext3="%changes 24h"
-                        boddyText3="-0.73"
-                        headtext4="Last"
-                        boddyText4="450.55"
-                        headtext5="Bid"
-                        boddyText5="449.85"
-                        headtext6="Ask"
-                        boddyText6="451.25"
-                        headtext7="Volume"
-                        boddyText7="125,000"
-                        headtext8="$Volume"
-                        boddyText8="$56.000.000"
-                        headtext9="Avg Tx Vol 60s"
-                        boddyText9="$258.33"
-                        headtext10="Avg Tx Vol 1hr"
-                        boddyText10="$214.85"
-                        headtext11="Avg Tx Vol 6hr"
-                        boddyText11="$314.39"
-                        headtext12="Avg Tx Vol 6hr"
-                        boddyText12="$387.22"
-                        headtext13="Avg Tx Vol 12hr"
-                        boddyText13="$186.19"
-                        headtext14="Avg Tx Vol 24hr"
-                        boddyText14="$349.76"
-                        headtext15="R/V"
-                        boddyText15='green'
-                      />
+                          {
+                            this.state.transactionList.map((item) =>{
+                              return (
+                                <RowBoard
+                                  headtext1="Symbol"
+                                  boddyText1= { item.symbol }
+                                  headtext2="Name"
+                                  boddyText2={item.name}
+                                  headtext3="%changes 24h"
+                                  boddyText3={ new Intl.NumberFormat('en-GB', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                    minimumFractionDigits: 0,
+                                    maximumFractionDigits: 0
+                                  }).format(item.average_tx_last_24hours)}
+                                  headtext4="Last"
+                                  boddyText4={item.last}
+                                  headtext5="Bid"
+                                  boddyText5={item.bid}
+                                  headtext6="Ask"
+                                  boddyText6='-'
+                                  headtext7="Volume"
+                                  boddyText7={ new Intl.NumberFormat('en-GB', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                    minimumFractionDigits: 0,
+                                    maximumFractionDigits: 0
+                                  }).format(item.volume)}
+                                  headtext8="$Volume"
+                                  boddyText8="-"
+                                  headtext9="Avg Tx Vol 60s"
+                                  boddyText9= { new Intl.NumberFormat('en-GB', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                    minimumFractionDigits: 0,
+                                    maximumFractionDigits: 0
+                                  }).format(item.average_tx_last_60second)}
+                                  headtext10="Avg Tx Vol 1hr"
+                                  boddyText10={ new Intl.NumberFormat('en-GB', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                    minimumFractionDigits: 0,
+                                    maximumFractionDigits: 0
+                                  }).format(item.average_tx_last_hour)}
+                                  headtext11="Avg Tx Vol 6hr"
+                                  boddyText11={ new Intl.NumberFormat('en-GB', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                    minimumFractionDigits: 0,
+                                    maximumFractionDigits: 0
+                                  }).format(item.average_tx_last_6hours)}
+                                  headtext13="Avg Tx Vol 12hr"
+                                  boddyText13={ new Intl.NumberFormat('en-GB', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                    minimumFractionDigits: 0,
+                                    maximumFractionDigits: 0
+                                  }).format(item.average_tx_last_12hours)}
+                                  headtext14="Avg Tx Vol 24hr"
+                                  boddyText14={ new Intl.NumberFormat('en-GB', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                    minimumFractionDigits: 0,
+                                    maximumFractionDigits: 0
+                                  }).format(item.average_tx_last_24hours)}
+                                  headtext15="R/V"
+                                  boddyText15="red"
+                                />
+                              )
+                            })
+                          }
+
                       </div>
                     </div>
                     <div>
@@ -296,4 +260,8 @@ class Tab extends Component {
   }
 }
 
-export default DashboardNew
+const mapStateToProps = (state) => {
+  console.log(state)
+  return {  }
+}
+export default connect(mapStateToProps, { newTransactions })(DashboardNew)

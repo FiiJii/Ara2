@@ -1,9 +1,9 @@
 import { createResource } from 'redux-rest-resource';
-import { BOTS_URL } from '../../../constants';
+import { BOT_NEW_TRANSACTION_LIST } from '../../../constants'
 
 export const {types, actions, rootReducer} = createResource({
-  name: 'bot',
-  url: BOTS_URL,
+  name: 'bot_transactions',
+  url: BOT_NEW_TRANSACTION_LIST,
   headers: {
     Authorization: 'Bearer ' + localStorage.getItem("access_token")
   }
