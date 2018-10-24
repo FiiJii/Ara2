@@ -163,6 +163,7 @@ class Settings extends Component {
               </Tooltip>
               <p className="subtitle-session" > Back to home <br/></p>
             </div>
+            <hr/>
             <div className={classes.root}>
               <AppBar position="static" color="default" id="menu">
                 <Tabs
