@@ -14,13 +14,16 @@ class Login extends Component {
       load: false
     }
   }
-  loginActive = () => {
+  loginActive = (e) => {
+   var tecla = (document.all) ? e.keyCode : e.which;
+    if (tecla == 13) {
+      this.props.loginSuccess(this.state.email, this.state.password, this.successLogin)
+      this.setState({ load: true })
+    };
     if (this.state.email === "" && this.state.password === "") {
-      console.log("hola");
       return
     }
     if (this.state.email === "" ) {
-      console.log("email");
       return
     }
     // else{
@@ -34,8 +37,6 @@ class Login extends Component {
       console.log("password");
       return
     }
-    this.props.loginSuccess(this.state.email,this.state.password, this.successLogin)
-    this.setState({load: true})
   }
   successLogin = (bool) =>{
     if (bool === true) {
@@ -52,7 +53,7 @@ class Login extends Component {
           <div className="container-login" history={this.props.history}>
             <div className="group-form">
               <p className="title-session text-white "><span className="title-ligth">BOT </span>TRADING.</p>
-              <div className="margin-top">
+              <div className="margin-top total-center">
                 <input
                   className="form-login"
                    type="text"
@@ -61,7 +62,7 @@ class Login extends Component {
                    onChange={(event) => this.setState({email: event.target.value})}
                    />
               </div>
-              <div>
+              <div className="total-center">
                 <input
                   className="form-login"
                   type="password"

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Table from '../../components/general/Table';
-import { Link } from "react-router-dom";
 import { MdArrowBack } from 'react-icons/md';
 import Tooltip from '@material-ui/core/Tooltip';
 import { Grid, Row, Col } from 'react-bootstrap';
