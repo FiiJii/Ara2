@@ -5,13 +5,16 @@
     padding-left: 15px;
     padding-right: 15px;
 }
+
 .container-header-board{
   display: grid;
-  grid-template-columns: repeat(15, 1fr)
+  grid-template-columns: repeat(15, 1fr);
 }
+
 .text-head-board{
     font-family: 'Quicksand';
-    font-size: 9pt;
+    font-size: 12pt;
+    font-weight: bold;
     line-height: 50px;
     text-align: center;
     white-space: nowrap;
@@ -20,23 +23,95 @@
     text-overflow: ellipsis;
     color: #29B6F6;
 }
+
 .container-Dashboard>.subtitle-session {
     margin-top: 15px;
     margin-bottom: 40px;
 }
+
 .container-board{
   display: block;
   margin-top: 20px;
 }
+
+.container-button {
+  text-align: center;
+}
+
+.exchange-state {
+  width: 10px;
+  height: 10px;
+  background: #6CFB08;
+}
+
+.button {
+  display: inline-block;
+  width: 60px;
+  margin-right: 10px;
+}
+
+.button-active {
+  display: inline-block;
+  width: 60px;
+  margin-right: 10px;
+  background: #29B6F6;
+  border: none;
+  border-radius: 15px;
+  color: #fff;
+  font-family: 'Montserrat';
+  font-weight: bold;
+}
+
+.button-desactive {
+  display: inline-block;
+  width: 60px;
+  margin-right: 10px;
+  background: #A2B4C3;
+  border: none;
+  border-radius: 15px;
+  color: #fff;
+  font-family: 'Montserrat';
+  font-weight: bold;
+}
+
+.button-active-ex {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  margin-top: 16px;
+  background: #6CFB08;
+  border: none;
+  border-radius: 15px;
+  color: #fff;
+  font-family: 'Montserrat';
+  font-weight: bold;
+}
+
+.button-desactive-ex {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  margin-top: 16px;
+  background: #FC4326;
+  border: none;
+  border-radius: 15px;
+  color: #fff;
+  font-family: 'Montserrat';
+  font-weight: bold;
+}
+
 .box-titles-tabs{
   display: flex;
   width: 100%;
-  max-width: 200px;
+  max-width: 500px;
   justify-content: space-between;
   margin-top: 30px;
 }
+
 .title-tab{
-  width: 100px;
+  width: 400px;
   font-family: 'Montserrat';
   font-weight: 600;
   font-size: 18pt;
@@ -44,10 +119,13 @@
   color: #bdbdbd;
   text-align: center
 }
+
 .title-tab-on{
+  width: 400px;
   color: #29B6F6;
   border-bottom: solid #29B6F6 1px
 }
+
 @media screen and (max-width: 992px){
   .container-board {
     display: grid;
@@ -55,9 +133,10 @@
     justify-items: center
   }
   .container-header-board {
-    display: none
+    display: inline-block;
   }
 }
+
 @media screen and (max-width: 620px) {
   .container-Dashboard > .subtitle-session{
     text-align: center;

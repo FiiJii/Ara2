@@ -155,14 +155,12 @@ class Settings extends Component {
             <div>
               <p className="title-session text-center" ><span className="title-ligth">Bot </span>Settings</p>
             </div>
-
             <div className="container-title-settings">
               <Tooltip title="Go back" placement="left-start" >
                 < MdArrowBack className="icon-back opacity" onClick={()=>this.props.history.push('/dashboard')}/>
               </Tooltip>
               <p className="subtitle-session" > Back to home <br/></p>
             </div>
-            <hr/>
             <div className={classes.root}>
               <AppBar position="static" color="default" id="menu">
                 <Tabs
@@ -178,135 +176,128 @@ class Settings extends Component {
                 </Tabs>
               </AppBar>
               {value === 0 && <div>
-
-
-                    <form className='add-currency-form' autoComplete="off">
-                      <FormControl className="formControl" variant="outlined">
-                        <InputLabel
-                          className="input-label"
-                          ref={ref => {
-                            this.labelRef = ReactDOM.findDOMNode(ref);
-                          }}
-                          htmlFor="outlined-coin-native-simple"
-                        >
-                          Select coin
-                        </InputLabel>
-                        <Select
-                          className="selector"
-                          native
-                          value={currency}
-                          onChange={this.handleChange}
-                          name="currency"
-                          input={
-                            <FilledInput
-                              className="filled"
-                              labelWidth={this.labelRef ? this.labelRef.offsetWidth : 0}
-                              id="outlined-coin-native-simple"
+                <form className='add-currency-form' autoComplete="off">
+                  <FormControl className="formControl" variant="outlined">
+                    <InputLabel
+                      className="input-label"
+                      ref={ref => {
+                      this.labelRef = ReactDOM.findDOMNode(ref);
+                      }}
+                      htmlFor="outlined-coin-native-simple"
+                    >
+                      Select coin
+                    </InputLabel>
+                    <Select
+                      className="selector"
+                      native
+                      value={currency}
+                      onChange={this.handleChange}
+                      name="currency"
+                      input={
+                        <FilledInput
+                          className="filled"
+                          labelWidth={this.labelRef ? this.labelRef.offsetWidth : 0}
+                          id="outlined-coin-native-simple"
+                        />
+                      }
+                    >
+                      <option value="" disabled placeholder=""/>
+                        {
+                          this.props.currencies.map((currency, key) => (
+                            <option key={key} value={currency.id}>{currency.name}</option>
+                          ))
+                        }
+                      </Select>
+                    </FormControl>
+                    <button
+                      type="button"
+                      className="button-add"
+                      onClick={this.addCurrencyToBot}
+                    >
+                      Add
+                    </button>
+                  </form>
+                  <div className="grid-settings-title">
+                    <p className="header-value-details">Coin</p>
+                    <p className="header-value-details">Description</p>
+                    <p className="header-value-details">Action</p>
+                  </div>
+                  <div className="grid-settings">
+                    {
+                      this.props.botCurrencies.map(({id, name, symbol}, key) =>{
+                        return(
+                          <div key={key}>
+                            <Table
+                              id={id}
+                              name={name}
+                              symbol={symbol}
+                              handleClick={this.removeCurrencyFromBot}
                             />
-                          }
-                        >
-                          <option value="" disabled placeholder=""/>
-                          {
-                            this.props.currencies.map((currency, key) => (
-                              <option key={key} value={currency.id}>{currency.name}</option>
-                            ))
-                          }
-                        </Select>
-                      </FormControl>
-                      <button
-                          type="button"
-                          className="button-add"
-                          onClick={this.addCurrencyToBot}
-                        >
-                          Add
-                      </button>
-                    </form>
-
-                <div className="grid-settings-title">
-                  <p className="header-value-details">Coin</p>
-                  <p className="header-value-details">Description</p>
-                  <p className="header-value-details">Action</p>
+                          </div>
+                        )
+                      })
+                    }
+                  </div>
                 </div>
-                <div className="grid-settings">
-                  {
-                    this.props.botCurrencies.map(({id, name, symbol}, key) =>{
-                      return(
-                        <div key={key}>
-                          <Table
-                            id={id}
-                            name={name}
-                            symbol={symbol}
-                            handleClick={this.removeCurrencyFromBot}
-                          />
-                        </div>
-                      )
-                    })
-                  }
-                </div>
-              </div>}
+              }
               {value === 1 && <TabContainer>
                 <Grid className='purchase-card'>
-
-                        <div className="grid">
-                          <Row className="grid-container">
-                            <Col sm={3}>
-                              <p className="settings">Active</p>
-                            </Col>
-                            <Col sm={3}>
-                              <Switch
-                                checked={this.state.checkedB}
-                                value="checkedB"
-                                color="primary"
-                              />
-                            </Col>
-                          </Row>
-                          <Row className="grid-container">
-                            <Col sm={3}>
-                              <p className="settings">Interval</p>
-                            </Col>
-                            <Col sm={3}>
-                              <input className="settings-input"></input>
-                            </Col>
-                          </Row>
-                          <Row className="grid-container">
-                            <Col sm={3}>
-                              <p className="settings">Max Lost</p>
-                            </Col>
-                            <Col sm={3}>
-                              <input className="settings-input" type="number"></input>
-                            </Col>
-                          </Row>
-                          <Row className="grid-container">
-                            <Col sm={3}>
-                              <p className="settings">Verbosity</p>
-                            </Col>
-                            <Col className="settings-input">
-                              <div className="settings-input">
-                                <label className="checkbox-inline">
-                                  <input className="settings-input settings-input" type="checkbox"></input>
-                                  <p>Low</p>
-                                </label>
-                                <label className="checkbox-inline">
-                                  <input className="settings-input settings-input" type="checkbox"></input>
-                                  <p>Mediun</p>
-                                </label>
-                                <label className="checkbox-inline">
-                                  <input className="settings-input" type="checkbox"></input>
-                                  <p>High</p>
-                                </label>
-                              </div>
-                            </Col>
-                          </Row>
+                  <div className="grid">
+                    <Row className="grid-container">
+                      <Col sm={3}>
+                        <p className="settings">Active</p>
+                      </Col>
+                      <Col sm={3}>
+                        <Switch
+                          checked={this.state.checkedB}
+                          value="checkedB"
+                          color="primary"
+                        />
+                      </Col>
+                    </Row>
+                    <Row className="grid-container">
+                      <Col sm={3}>
+                        <p className="settings">Interval</p>
+                      </Col>
+                      <Col sm={3}>
+                        <input className="settings-input"></input>
+                      </Col>
+                    </Row>
+                    <Row className="grid-container">
+                      <Col sm={3}>
+                        <p className="settings">Max Lost</p>
+                      </Col>
+                      <Col sm={3}>
+                        <input className="settings-input" type="number"></input>
+                      </Col>
+                    </Row>
+                    <Row className="grid-container">
+                      <Col sm={3}>
+                        <p className="settings">Verbosity</p>
+                      </Col>
+                      <Col className="settings-input">
+                        <div className="settings-input">
+                          <label className="checkbox-inline">
+                            <input className="settings-input settings-input" type="checkbox"></input>
+                            <p>Low</p>
+                          </label>
+                          <label className="checkbox-inline">
+                            <input className="settings-input settings-input" type="checkbox"></input>
+                            <p>Mediun</p>
+                          </label>
+                            <label className="checkbox-inline">
+                              <input className="settings-input" type="checkbox"></input>
+                              <p>High</p>
+                            </label>
                         </div>
-
+                      </Col>
+                    </Row>
+                  </div>
                 </Grid>
-
               </TabContainer>}
             </div>
-
           </div>
         </div>
-
       </DefaultLayout>
     )
   }

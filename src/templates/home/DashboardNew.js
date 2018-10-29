@@ -5,6 +5,8 @@ import { connect } from 'react-redux'
 import { newTransactions } from '../../ducks/dashboard';
 
 import '../../styles/templates/dashboard-new.css'
+import Buttons from '../../components/buttons/Buttons';
+import Exchanges from '../../components/exchanges/Exchanges';
 
 class DashboardNew extends Component {
   constructor(props){
@@ -26,8 +28,10 @@ class DashboardNew extends Component {
           "transactionList": transactionsValue
         })
     }
+  }
 
-
+  _handleStatusChange(event) {
+    console.log("value", event.target.value);
   }
 
     render() {
@@ -37,101 +41,106 @@ class DashboardNew extends Component {
               <div className="container-Dashboard-new">
                 <p className="title-session text-center" ><span className="title-ligth">Bot </span> Transactions</p>
                 <p className="subtitle-session" >Transactions List</p>
-                  <Tab>
-                    <div>
-                      <div className="container-board">
-                          <div className="container-header-board">
-                              <p className="text-head-board">Symbol</p>
-                              <p className="text-head-board">Name</p>
-                              <p className="text-head-board">%changes 24h</p>
-                              <p className="text-head-board">Last</p>
-                              <p className="text-head-board">Bid</p>
-                              <p className="text-head-board">Ask</p>
-                              <p className="text-head-board">Volume</p>
-                              <p className="text-head-board">$Volume</p>
-                              <p className="text-head-board">Avg Tx Vol 60s</p>
-                              <p className="text-head-board">Avg Tx Vol 1hr</p>
-                              <p className="text-head-board">Avg Tx Vol 6hr</p>
-                              <p className="text-head-board">Avg Tx Vol 6hr</p>
-                              <p className="text-head-board">Avg Tx Vol 12hr</p>
-                              <p className="text-head-board">Avg Tx Vol 24hr</p>
-                              <p className="text-head-board">R/V</p>
-                          </div>
-                          {
-                            this.state.transactionList.map((item) =>{
-                              return (
-                                <RowBoard
-                                  headtext1="Symbol"
-                                  boddyText1= { item.symbol }
-                                  headtext2="Name"
-                                  boddyText2={item.name}
-                                  headtext3="%changes 24h"
-                                  boddyText3={ new Intl.NumberFormat('en-GB', {
-                                    style: 'currency',
-                                    currency: 'USD',
-                                    minimumFractionDigits: 0,
-                                    maximumFractionDigits: 0
-                                  }).format(item.average_tx_last_24hours)}
-                                  headtext4="Last"
-                                  boddyText4={item.last}
-                                  headtext5="Bid"
-                                  boddyText5={item.bid}
-                                  headtext6="Ask"
-                                  boddyText6='-'
-                                  headtext7="Volume"
-                                  boddyText7={ new Intl.NumberFormat('en-GB', {
-                                    style: 'currency',
-                                    currency: 'USD',
-                                    minimumFractionDigits: 0,
-                                    maximumFractionDigits: 0
-                                  }).format(item.volume)}
-                                  headtext8="$Volume"
-                                  boddyText8="-"
-                                  headtext9="Avg Tx Vol 60s"
-                                  boddyText9= { new Intl.NumberFormat('en-GB', {
-                                    style: 'currency',
-                                    currency: 'USD',
-                                    minimumFractionDigits: 0,
-                                    maximumFractionDigits: 0
-                                  }).format(item.average_tx_last_60second)}
-                                  headtext10="Avg Tx Vol 1hr"
-                                  boddyText10={ new Intl.NumberFormat('en-GB', {
-                                    style: 'currency',
-                                    currency: 'USD',
-                                    minimumFractionDigits: 0,
-                                    maximumFractionDigits: 0
-                                  }).format(item.average_tx_last_hour)}
-                                  headtext11="Avg Tx Vol 6hr"
-                                  boddyText11={ new Intl.NumberFormat('en-GB', {
-                                    style: 'currency',
-                                    currency: 'USD',
-                                    minimumFractionDigits: 0,
-                                    maximumFractionDigits: 0
-                                  }).format(item.average_tx_last_6hours)}
-                                  headtext13="Avg Tx Vol 12hr"
-                                  boddyText13={ new Intl.NumberFormat('en-GB', {
-                                    style: 'currency',
-                                    currency: 'USD',
-                                    minimumFractionDigits: 0,
-                                    maximumFractionDigits: 0
-                                  }).format(item.average_tx_last_12hours)}
-                                  headtext14="Avg Tx Vol 24hr"
-                                  boddyText14={ new Intl.NumberFormat('en-GB', {
-                                    style: 'currency',
-                                    currency: 'USD',
-                                    minimumFractionDigits: 0,
-                                    maximumFractionDigits: 0
-                                  }).format(item.average_tx_last_24hours)}
-                                  headtext15="R/V"
-                                  boddyText15="red"
-                                />
-                              )
-                            })
-                          }
-
+                <Tab>
+                  <div>
+                    <Exchanges/>
+                    <div className="container-board">
+                      <div className="container-header-board">
+                        <Buttons/>
                       </div>
+                      <div className="container-header-board">
+                        <p className="text-head-board">Symbol</p>
+                        <p className="text-head-board">Name</p>
+                        <p className="text-head-board">%changes 24h</p>
+                        <p className="text-head-board">Last</p>
+                        <p className="text-head-board">Bid</p>
+                        <p className="text-head-board">Ask</p>
+                        <p className="text-head-board">Volume</p>
+                        <p className="text-head-board">$Volume</p>
+                        <p className="text-head-board">Avg Tx Vol 60s</p>
+                        <p className="text-head-board">Avg Tx Vol 1hr</p>
+                        <p className="text-head-board">Avg Tx Vol 6hr</p>
+                        <p className="text-head-board">Avg Tx Vol 6hr</p>
+                        <p className="text-head-board">Avg Tx Vol 12hr</p>
+                        <p className="text-head-board">Avg Tx Vol 24hr</p>
+                        <p className="text-head-board">R/V</p>
+                      </div>
+                      {
+                        this.state.transactionList.map((item) =>{
+                          return (
+                            <RowBoard
+                              headtext1="Symbol"
+                              boddyText1= { item.symbol }
+                              headtext2="Name"
+                              boddyText2={item.name}
+                              headtext3="%changes 24h"
+                              boddyText3={ new Intl.NumberFormat('en-GB', {
+                                style: 'currency',
+                                currency: 'USD',
+                                minimumFractionDigits: 0,
+                                maximumFractionDigits: 0
+                              }).format(item.average_tx_last_24hours)}
+                              headtext4="Last"
+                              boddyText4={item.last}
+                              headtext5="Bid"
+                              boddyText5={item.bid}
+                              headtext6="Ask"
+                              boddyText6='-'
+                              headtext7="Volume"
+                              boddyText7={ new Intl.NumberFormat('en-GB', {
+                                style: 'currency',
+                                currency: 'USD',
+                                minimumFractionDigits: 0,
+                                maximumFractionDigits: 0
+                              }).format(item.volume)}
+                              headtext8="$Volume"
+                              boddyText8="-"
+                              headtext9="Avg Tx Vol 60s"
+                              boddyText9= { new Intl.NumberFormat('en-GB', {
+                                style: 'currency',
+                                currency: 'USD',
+                                minimumFractionDigits: 0,
+                                maximumFractionDigits: 0
+                              }).format(item.average_tx_last_60second)}
+                              headtext10="Avg Tx Vol 1hr"
+                              boddyText10={ new Intl.NumberFormat('en-GB', {
+                                style: 'currency',
+                                currency: 'USD',
+                                minimumFractionDigits: 0,
+                                maximumFractionDigits: 0
+                              }).format(item.average_tx_last_hour)}
+                              headtext11="Avg Tx Vol 6hr"
+                              boddyText11={ new Intl.NumberFormat('en-GB', {
+                                style: 'currency',
+                                currency: 'USD',
+                                minimumFractionDigits: 0,
+                                maximumFractionDigits: 0
+                              }).format(item.average_tx_last_6hours)}
+                              headtext13="Avg Tx Vol 12hr"
+                              boddyText13={ new Intl.NumberFormat('en-GB', {
+                                style: 'currency',
+                                currency: 'USD',
+                                minimumFractionDigits: 0,
+                                maximumFractionDigits: 0
+                              }).format(item.average_tx_last_12hours)}
+                              headtext14="Avg Tx Vol 24hr"
+                              boddyText14={ new Intl.NumberFormat('en-GB', {
+                                style: 'currency',
+                                currency: 'USD',
+                                minimumFractionDigits: 0,
+                                maximumFractionDigits: 0
+                              }).format(item.average_tx_last_24hours)}
+                              headtext15="R/V"
+                              boddyText15="green"
+                              status={item.status_parity}
+                              handleClick={this._handleStatusChange}
+                            />
+                          )
+                        })
+                      }
                     </div>
-                    <div>
+                  </div>
+                  <div>
                     <div className="container-board">
                       <div className="container-header-board">
                         <p className="text-head-board">Time</p>
@@ -217,7 +226,7 @@ class DashboardNew extends Component {
                       />
                     </div>
                   </div>
-                  </Tab>
+                </Tab>
               </div>
             </div>
           </DefaultLayout>
@@ -238,19 +247,23 @@ class Tab extends Component {
       <div>
         <div>
           <div className="box-titles-tabs">
-            <p className={this.state.tab === 1 ? 'title-tab-on title-tab' : 'title-tab' } onClick={() => this.setState({ tab: 1 })}>Tab1</p>
-            <p className={this.state.tab === 2 ? 'title-tab-on title-tab' : 'title-tab'} onClick={() => this.setState({ tab: 2 })}>Tab2</p>
+            <div className="box-titles-tabs-items">
+              <p className={this.state.tab === 1 ? 'title-tab-on title-tab' : 'title-tab' }
+                onClick={() => this.setState({ tab: 1 })}>Parity Average</p>
+              <p className={this.state.tab === 2 ? 'title-tab-on title-tab' : 'title-tab'}
+                onClick={() => this.setState({ tab: 2 })}>Transaction Detail</p>
+            </div>
           </div>
           {
-              this.state.tab === 1 ?
+            this.state.tab === 1 ?
               <div>
                 {this.props.children[0]}
               </div>
             :
               this.state.tab === 2 ?
-              <div>
-                {this.props.children[1]}
-              </div>
+                <div>
+                  {this.props.children[1]}
+                </div>
             :
             null
           }
@@ -264,4 +277,5 @@ const mapStateToProps = (state) => {
   console.log(state)
   return {  }
 }
+
 export default connect(mapStateToProps, { newTransactions })(DashboardNew)

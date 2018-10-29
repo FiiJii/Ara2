@@ -5,10 +5,14 @@
 #outlined-coin-native-simple {
   background-color: #f7f1f129;
   font-size: 15px;
-  color: black;
+  color: #fff;
   padding-top: 0;
   font-family: 'Montserrat';
   font-weight: bold;
+}
+
+#outlined-coin-native-simple option {
+  color: #000;
 }
 
 .container-title-settings {
@@ -150,13 +154,14 @@
   height: 65px;
   line-height: 65px;
   font-family: 'Montserrat';
-  font-weight: 400;
-  font-size: 12pt;
+  font-weight: 600;
+  font-size: 18pt;
   min-width: 100px;
   text-align: center;
   display: inline-block;
-  color: white;
+  color: #bdbdbd;
   text-decoration: none;
+  text-transform: none;
 }
 
 #menu [class*="MuiTabs-flexContainer"] {
@@ -170,6 +175,14 @@
 
 #menu {
   box-shadow: none;
+}
+
+#menu [class*="MuiFilledInput-underline"] {
+  border-bottom: none;
+}
+
+form [class*="MuiSelect-icon"] {
+  color: #fff;
 }
 
 form [class*="MuiFormLabel"] {
@@ -188,10 +201,6 @@ form [class*="MuiInputLabel-outlined"] {
 form [class*="MuiFormLabel-root"] {
   font-size: 2rem;
   color: white;
-}
-
-form [class*=".MuiSelect-icon"] {
-  color: rgb(240, 240, 240);
 }
 
 form [class*="MuiSelect-select"] {

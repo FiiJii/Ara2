@@ -2,7 +2,7 @@ import API from '../../api'
 
 
 export const newTransactions = (success) => ( dispatch ) => {
-  API.get(`api/trading/transaction_details/averages/`)
+  API.get(`api/config/currency/averages/`)
   .then(response => {
     if (response.code === 200 ) {
       success(true, response.data)
