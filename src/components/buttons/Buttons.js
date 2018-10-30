@@ -10,11 +10,6 @@ class buttons extends Component {
       stateclassltc: true,
       stateclasseth: true,
       stateclassall: true,
-      filter: ["/api/config/currency/averages/?coins=usdt",
-               "/api/config/currency/averages/?coins=btc",
-               "/api/config/currency/averages/?coins=ltc",
-               "/api/config/currency/averages/?coins=eth",
-              ],
     }
   }
 
