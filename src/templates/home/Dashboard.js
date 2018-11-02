@@ -1,102 +1,64 @@
 import React, { Component } from 'react';
-import Card from '../../components/general/Card';
 import DefaultLayout from '../../layouts/DefaultLayout';
-import Details from './details.json'
-import { transactions } from '../../ducks/dashboard';
+import Pairs from '../../components/general/Pairs';
+import Transactions from '../../components/general/Transactions';
 import { connect } from 'react-redux';
+
 import '../../styles/templates/dashboard.css';
 
-
 class Dashboard extends Component {
-  constructor(props){
-    super(props)
-    this.state={
-      transactions: [],
-      load: true,
-      page: 1,
-      item: 10,
-      count: 0
-    }
+  render() {
+    return (
+      <DefaultLayout history={this.props.history}>
+        <div className="total-center" >
+          <div className="container-dashboard-new">
+            <p className="title-session text-center" ><span className="title-ligth">Bot </span> Transactions</p>
+            <Tab>
+              <Pairs/>
+              <Transactions/>
+            </Tab>
+          </div>
+        </div>
+      </DefaultLayout>
+    );
   }
-  componentWillMount(){
-    this.setState({load: true})
-    this.props.transactions(this.transactionsList,this.state.page)
+}
+
+class Tab extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      tab: 1,
+    };
   }
 
-  transactionsList = (bool, transactionsValue, message) => {
-    if (bool) {
-      const arrayData = this.state.page > 1 ? [...this.state.transactions, ...transactionsValue.results] : null
-      this.setState({
-        transactions: this.state.page === 1 ? transactionsValue.results : arrayData,
-        load: false,
-        count: transactionsValue.count
-      })
-    }
-  }
-  changePage = () =>{
-    this.setState({
-      page: ++ this.state.page,
-      item: this.state.item + 10
-    })
-    this.props.transactions(this.transactionsList,this.state.page)
-  }
-    render() {
-        if(this.state.count > 0){
-          if(this.state.item < this.state.count){
-            var next = false
-          }else{
-            var next = true
-          }
-        }else{
-          var next = true;
-        }
-        return (
-          <DefaultLayout history={this.props.history}>
-            <div className="total-center" >
-              <div className="container-Dashboard">
-                <p className="title-session text-center" ><span className="title-ligth">Bot </span> Transactions</p>
-                <p className="subtitle-session" >Transactions List</p>
-                <div className="header-titles-Dashboard">
-                  <p className="header-value-details">ID </p>
-                  <p className="header-value-details">Creation Data </p>
-                  <p className="header-value-details">Investment </p>
-                  <p className="header-value-details">Earnings </p>
-                </div>
-                <div className="grid-Dashboard">
-                  {
-                    this.state.transactions ?
-                    this.state.transactions.map((items, key) =>{
-                      return(
-                        <div key={key}>
-                          <Card
-                            id={items.id}
-                            creationData={items.creation_date}
-                            investment={items.investment}
-                            earnings={items.earnings}
-                            history={this.props.history}/>
-                        </div>
-                      )
-                    }) : null
-                  }
-                </div>;
+  render() {
+    return (
+      <div>
+        <div>
+          <div className="box-titles-tabs-items">
+            <p className={this.state.tab === 1 ? 'title-tab-on title-tab' : 'title-tab' }
+              onClick={() => this.setState({ tab: 1 })}>Parities Average</p>
+            <p className={this.state.tab === 2 ? 'title-tab-on title-tab' : 'title-tab'}
+              onClick={() => this.setState({ tab: 2 })}>Transactions List</p>
+          </div>
+          {
+            this.state.tab === 1 ?
+              <div>
+                {this.props.children[0]}
               </div>
-            </div>
-            <div className="total-center">
-              <button
-                type="button"
-                className={next ? "buttonFalse" : "button" }
-                onClick={this.changePage}
-                disabled={next}
-                >see more</button>
-            </div>
-          </DefaultLayout>
-        )
-    }
-}
-const mapStateToProps = (state) => {
-  console.log(state);
-  return {
-
+            :
+              this.state.tab === 2 ?
+                <div>
+                  {this.props.children[1]}
+                </div>
+            :
+            null
+          }
+        </div>
+      </div>
+    );
   }
 }
-export default connect(mapStateToProps,{ transactions })(Dashboard)
+
+export default Dashboard;

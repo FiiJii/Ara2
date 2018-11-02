@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { MdMenu } from 'react-icons/md';
 import '../../styles/components/header.css';
 import { Link } from "react-router-dom";
-import MenuOption from '../header/MenuOption';
+import MenuOption from './MenuOption';
 import { MENU } from '../../constants';
 
 class Header extends Component {
@@ -17,7 +17,7 @@ class Header extends Component {
     <div history={this.props.history}>
       <div className="header-container">
         <div className="items-header">
-          <p className="title-home opacity" onClick={()=>this.props.history.push('/Dashboard')}>
+          <p className="title-home opacity" onClick={()=>this.props.history.push('/dashboard')}>
             <span className="title-ligth">BOT </span>TRADING.
           </p>
         </div>
@@ -39,7 +39,7 @@ class Header extends Component {
       {
         this.state.openMenu === true ?
         <div className="header-responsive">
-          <p className="items-text-header-responsive opacity" onClick={()=>this.props.history.push('/Dashboard')}>HOME</p>
+          <p className="items-text-header-responsive opacity" onClick={()=>this.props.history.push('/dashboard')}>HOME</p>
           <Link
             to="settings"
           >

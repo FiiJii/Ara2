@@ -6,5 +6,6 @@ export const {types, actions, rootReducer} = createResource({
   url: BOTS_URL,
   headers: {
     Authorization: 'Bearer ' + localStorage.getItem("access_token")
-  }
-})
+  },
+  stripTrailingSlashes: false
+});

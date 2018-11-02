@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import DetailsCard from '../../components/general/DetailsCard';
-import Header from '../../components/general/Header';
+import Header from '../../components/header';
 import Details from './details.json'
-import { details } from '../../ducks/dashboard';
 import { MdArrowBack } from 'react-icons/md';
 import { MdExitToApp } from 'react-icons/md';
 import { connect } from 'react-redux';
@@ -80,4 +79,4 @@ const mapStateToProps = (state) => {
 
   }
 }
-export default connect(mapStateToProps,{ details })(DetailsTransactions)
+export default connect(mapStateToProps)(DetailsTransactions)

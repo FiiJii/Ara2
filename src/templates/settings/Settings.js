@@ -118,7 +118,6 @@ class Settings extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('nextProps', nextProps);
     const {
       bots,
       isFetchingBots,
@@ -147,11 +146,11 @@ class Settings extends Component {
   render() {
     const { classes } = this.props;
     const { value, currency } = this.state;
-    console.log('currency', currency);
+
     return (
       <DefaultLayout history={this.props.history}>
         <div className="total-center">
-          <div className="container-Dashboard">
+          <div className="container-dashboard">
             <div>
               <p className="title-session text-center" ><span className="title-ligth">Bot </span>Settings</p>
             </div>

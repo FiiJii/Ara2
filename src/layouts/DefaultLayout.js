@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Header from '../components/general/Header';
+import Header from '../components/header';
 
 class DefaultLayout extends Component {
   render() {

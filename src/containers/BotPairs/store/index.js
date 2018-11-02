@@ -1,10 +1,9 @@
 import { createResource } from 'redux-rest-resource';
-import { CURRENCIES_URL } from '../../../constants';
+import { BOT_PAIRS_URL } from '../../../constants';
 
 export const {types, actions, rootReducer} = createResource({
-  name: 'currency',
-  url: CURRENCIES_URL,
-  pluralName: 'currencies',
+  name: 'botPair',
+  url: BOT_PAIRS_URL,
   headers: {
     Authorization: 'Bearer ' + localStorage.getItem("access_token")
   },
