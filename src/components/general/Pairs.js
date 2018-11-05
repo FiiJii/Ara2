@@ -97,6 +97,7 @@ class Pairs extends React.Component {
 }
 
 function mapStateToProps(state) {
+  console.log('state', state);
   const bots = state.bots.items;
   const bot = bots.length ? bots[0] : {};
   const isFetchingPairs = state.pairs.isFetching;

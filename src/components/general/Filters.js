@@ -52,6 +52,7 @@ class Filters extends React.Component {
       buttons.push(
         <Button
           active={this.isSelected(filter.value)}
+          key={key}
           onClick={this._handleFilterToggle.bind(this)}
           text={filter.text}
           value={filter.value}
@@ -63,6 +64,7 @@ class Filters extends React.Component {
       buttons.push(
         <Button
           active={allActive}
+          key={this.props.filtersList.length}
           onClick={this._handleFilterToggle.bind(this)}
           text="ALL"
           value={ALL_FILTERS}
