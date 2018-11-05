@@ -70,6 +70,7 @@ class Settings extends Component {
       isFetchingBots: false,
       isCreatingBotCurrencies: false,
       isDeletingBotCurrencies: false,
+      valuerange: '50',
     };
   }
 
@@ -231,52 +232,59 @@ class Settings extends Component {
               </div>
               <div>
               <TabContainer>
-
-                  <div className="grid">
-
-                        <p className="settings">Active</p>
-
-                        <Switch
-                          checked={this.state.checkedB}
-                          value="checkedB"
-                          color="primary"
-                        />
-
-
-                        <p className="settings">Interval</p>
-
-                        <input className="settings-input"></input>
-
-
-                        <p className="settings">Max Lost</p>
-
-                        <input className="settings-input" type="number"></input>
-
-
-                        <p className="settings">Verbosity</p>
-
-                        <div className="verbosity">
-                          <label className="checkbox-inline">
-                            <input  type="radio" name="radio"></input>
-                            <p>Low</p>
-                          </label>
-                          <label className="checkbox-inline">
-                            <input  type="radio" name="radio"></input>
-                            <p>Mediun</p>
-                          </label>
-                          <label className="checkbox-inline">
-                            <input  type="radio" name="radio"></input>
-                            <p>High</p>
-                          </label>
-                        </div>
-
+                <div className="grid-general">
+                  <div>
+                    <p className="settings">Active</p>
                   </div>
-
+                  <div>
+                    <Switch
+                      checked={this.state.checkedB}
+                      value="checkedB"
+                      color="primary"
+                    />
+                  </div>
+                  <div>
+                    <p className="settings">Interval</p>
+                  </div>
+                  <div>
+                    <input className="settings-input" type="number" min="0" max="1" step="0.00001"></input>
+                  </div>
+                  <div>
+                    <p className="settings">Max Lost</p>
+                  </div>
+                  <div className="settings-slider">
+                    <input
+                      type="range"
+                      id="range"
+                      min="1"
+                      max="100"
+                      className="slider"
+                      value={this.state.valuerange}
+                      onChange={event => this.setState({valuerange: event.target.value})}
+                    />
+                    <p className="settings-range">Value: {this.state.valuerange} %</p>
+                  </div>
+                  <div>
+                    <p className="settings">Verbosity</p>
+                  </div>
+                  <div className="verbosity">
+                    <label className="checkbox-inline">
+                      <input  type="radio" name="radio"></input>
+                      <p>Low</p>
+                    </label>
+                    <label className="checkbox-inline">
+                      <input  type="radio" name="radio"></input>
+                      <p>Mediun</p>
+                    </label>
+                    <label className="checkbox-inline">
+                      <input  type="radio" name="radio"></input>
+                      <p>High</p>
+                    </label>
+                  </div>
+                </div>
               </TabContainer>
               </div>
             </Tabsub>
-
-
           </div>
         </div>
       </DefaultLayout>
