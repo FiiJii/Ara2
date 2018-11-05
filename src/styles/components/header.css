@@ -11,6 +11,7 @@ button:focus, input:focus {
   grid-template-rows: auto;
   align-items: center;
 }
+
 .title-home{
   font-family: 'Montserrat';
   font-weight: 800;
@@ -18,8 +19,6 @@ button:focus, input:focus {
   margin-left: 50px
 }
 
-.items-header{
-}
 .items-text-header{
   font-family: 'Montserrat';
   font-weight: 400;
@@ -27,6 +26,7 @@ button:focus, input:focus {
   min-width: 100px;
   text-align: center
 }
+
 .items-text-header-active{
   border-bottom: 2px #29B6F6 solid;
   height: 65px;
@@ -49,14 +49,17 @@ button:focus, input:focus {
 .items-header-menu, .header-responsive{
   display: none
 }
+
 @media screen and (max-width: 620px) {
   .header-container{
     display: flex;
     justify-content: space-between;
   }
+
   .items-text-header{
     display: none
   }
+
   .items-text-header-responsive{
     font-family: 'Montserrat';
     font-weight: 400;
@@ -64,6 +67,7 @@ button:focus, input:focus {
     min-width: 100px;
     text-align: center
   }
+
   .items-header-menu{
     display: flex;
     justify-content: center;
@@ -71,6 +75,7 @@ button:focus, input:focus {
     color: #FFF;
     margin-right: 50px
   }
+
   .header-responsive{
     position: absolute;
     z-index: 1000;
