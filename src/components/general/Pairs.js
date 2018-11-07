@@ -5,6 +5,7 @@ import { ACTIVE_PAIR, CURRENCIES_FILTERS, PARITIES_TABLE_HEADERS } from '../../c
 import { connect } from 'react-redux';
 import { formatCurrency } from '../../global_functions';
 import { actions as botActions } from '../../containers/Bots/store';
+import { actions as botCurrencyActions } from '../../containers/BotCurrencies/store';
 import { actions as botPairActions } from '../../containers/BotPairs/store';
 import { actions as pairActions } from '../../containers/Pairs/store';
 
@@ -12,53 +13,75 @@ class Pairs extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      bot: {},
-      currencies: CURRENCIES_FILTERS,
+      currencies: [],
       pairs: [],
-      isTogglingBotPair: false
+      isTogglingBotCurrencies: false,
+      isTogglingBotPair: false,
     };
-  }
-
-  fetchBots = () => {
-    this.props.fetchBots(null, {query: {paginate: false}});
   }
 
   fetchPairs = () => {
     this.props.fetchPairs();
   }
 
+  isLoading = () => {
+    return this.props.isFetchingBots
+      || this.props.isFetchingBotCurrencies
+      || this.props.isFetchingPairs
+      || this.props.isTogglingBotCurrencies
+      || this.props.isTogglingBotPair;
+  }
+
   componentWillReceiveProps(nextProps) {
-    const { bot, isTogglingBotPair, pairs } = nextProps;
+    const { currencies, isTogglingBotCurrencies, isTogglingBotPair, pairs } = nextProps;
 
     if (!isTogglingBotPair && this.state.isTogglingBotPair) {
       this.fetchPairs();
     }
 
-    this.setState({bot, isTogglingBotPair, pairs});
+    if (!isTogglingBotCurrencies && this.state.isTogglingBotCurrencies) {
+      const botId = this.props.bot.id;
+      this.fetchPairs();
+      this.props.reloadCurrencies({botId});
+    }
+
+    if (currencies !== this.state.currencies) {
+      this.setState({currencies});
+    }
+
+    this.setState({isTogglingBotCurrencies, isTogglingBotPair, pairs});
   }
 
   componentWillMount(){
-    this.fetchBots();
     this.fetchPairs();
   }
 
   _handleStatusChange(target) {
-    const botId = this.state.bot.id;
-    const id = target.getAttribute("currencyid");
+    const botId = this.props.bot.id;
+    const [id, status] = target.value.split('.');
 
-    if (target.value === ACTIVE_PAIR) {
+    if (status === ACTIVE_PAIR) {
       this.props.deleteBotPair({botId, id});
     } else {
       this.props.createBotPair({botId, id});
     }
   }
 
-  _handleFiltersChange(currencies) {
+  _handleFiltersChange(symbols, symbol) {
+    let { currencies } = this.state;
+    const botId = this.props.bot.id;
+    const data = {botId, symbol};
+
+    if (currencies.includes(symbol)) {
+      this.props.deleteBotCurrency(data);
+    } else {
+      this.props.createBotCurrency(data);
+    }
   }
 
   _parsePairContent(pair) {
     return [
-      pair.symbol,
+      pair.name_parity,
       pair.name,
       formatCurrency(pair.average_tx_last_24hours),
       pair.last,
@@ -73,9 +96,9 @@ class Pairs extends React.Component {
       formatCurrency(pair.average_tx_last_24hours),
       <TogglePair
         color={pair.status_parity === ACTIVE_PAIR ? '#6CFB08' : '#FC4326'}
-        currencyId={pair.id}
+        currencyid={pair.id}
         onButtonClick={this._handleStatusChange.bind(this)}
-        status={pair.status_parity}
+        value={`${pair.id}.${pair.status_parity}`}
       />,
     ];
   }
@@ -83,12 +106,13 @@ class Pairs extends React.Component {
   render() {
     return (
       <FilteredTable
-        allFilters={true}
         contentParser={this._parsePairContent.bind(this)}
-        filters={this.state.currencies}
-        filtersList={CURRENCIES_FILTERS}
-        loading={this.props.isFetchingPairs || this.props.isTogglingBotPair}
+        filters={this.state.currencies.slice(0)}
+        filtersList={this.props.currenciesList}
+        loading={this.isLoading()}
+        nextPage={this.props.nextPairs}
         onFiltersChange={this._handleFiltersChange.bind(this)}
+        prevPage={this.props.prevPairs}
         tableElements={this.state.pairs}
         tableHeaders={PARITIES_TABLE_HEADERS}
       />
@@ -97,18 +121,33 @@ class Pairs extends React.Component {
 }
 
 function mapStateToProps(state) {
-  console.log('state', state);
-  const bots = state.bots.items;
-  const bot = bots.length ? bots[0] : {};
+  const isCreatingBotCurrencies = state.botCurrencies.isCreating;
+  const isDeletingBotCurrencies = state.botCurrencies.isDeleting;
+  const isTogglingBotCurrencies = isCreatingBotCurrencies || isDeletingBotCurrencies;
+  const isFetchingBots = state.bots.isFetching;
   const isFetchingPairs = state.pairs.isFetching;
   const isTogglingBotPair = state.botPairs.isCreating || state.botPairs.isDeleting;
-  const pairs = state.pairs.items;
+  const { items } = state.pairs;
+  let pairs = items;
+  let nextPairs = false;
+  let prevPairs = false;
+
+  if (items.length && items[0].results) {
+    pairs = items[0].results;
+    nextPairs = items[0].next !== null;
+    prevPairs = items[0].previous !== null;
+  }
 
   return {
-    bot,
+    isCreatingBotCurrencies,
+    isDeletingBotCurrencies,
+    isTogglingBotCurrencies,
+    isFetchingBots,
     isFetchingPairs,
     isTogglingBotPair,
+    nextPairs,
     pairs,
+    prevPairs,
   };
 }
 
@@ -117,6 +156,7 @@ export default connect(
   {
     ...botActions,
     ...botPairActions,
-    ...pairActions
+    ...pairActions,
+    ...botCurrencyActions
   }
 )(Pairs);

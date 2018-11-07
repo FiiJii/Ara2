@@ -13,6 +13,10 @@ p{
   font-weight: 800;
   font-size: 28pt;
 }
+.title-ligth{
+  font-family: 'Montserrat';
+  font-weight: 300;
+}
 .subtitle-session{
   font-family: 'Quicksand';
   font-size: 20pt;
@@ -42,10 +46,6 @@ p{
   -o-user-select: none;
   -ms-user-select: none;
   user-select: none;
-}
-.title-ligth{
-  font-family: 'Montserrat';
-  font-weight: 300;
 }
 .button{
   margin-top: 20px;

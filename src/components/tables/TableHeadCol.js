@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 
 export default styled.th`
@@ -12,5 +11,4 @@ export default styled.th`
   text-overflow: ellipsis;
   text-align: center;
   white-space: nowrap;
-  width: 98%;
 `;

@@ -16,7 +16,7 @@ class Transactions extends React.Component {
 
   buildFilters = (list) => {
     let filters = {};
-    const currency = this.state[list].map(currency => currency.value).join(',');
+    const currency = this.state[list].join(',');
 
     if (currency.length) {
       filters = {currency};
@@ -48,8 +48,8 @@ class Transactions extends React.Component {
   _parseTransactionContent(transaction) {
     return [
       transaction.creation_date.split('T')[1],
-      transaction.parity.name,
       transaction.parity.symbol,
+      transaction.parity.name,
       transaction.okex_order,
       transaction.action,
       transaction.amount,

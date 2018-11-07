@@ -1,64 +1,102 @@
-import React, { Component } from 'react';
+import React from 'react';
 import DefaultLayout from '../../layouts/DefaultLayout';
 import Pairs from '../../components/general/Pairs';
+import Tabs from '../../components/tabs';
+import Title from '../../components/general/Title';
 import Transactions from '../../components/general/Transactions';
 import { connect } from 'react-redux';
+import { actions as botActions } from '../../containers/Bots/store';
+import { actions as botCurrencyActions } from '../../containers/BotCurrencies/store';
 
-import '../../styles/templates/dashboard.css';
+const coinMapper = coin => {
+  return coin.name ? coin.name : Object.keys(coin)[0]
+};
+const coinFilter = coin => {
+  return coin.status ? coin.status : coin[Object.keys(coin)[0]];
+};
 
-class Dashboard extends Component {
+class Dashboard extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      bot: {},
+      currencies: [],
+      currenciesList: [],
+      fetchingBot: false,
+    };
+  }
+
+  fetchBots = () => {
+    this.props.fetchBots(null, {query: {paginate: false}});
+  }
+
+  componentWillMount(){
+    this.fetchBots();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { bot, coins, fetchingBot } = nextProps;
+    const currenciesList = coins.map(coinMapper);
+    const currencies = coins.filter(coinFilter).map(coinMapper);
+
+    if (bot !== {} && !fetchingBot && this.state.fetchingBot) {
+      const botId = bot.id;
+      this.props.fetchBotCurrencies({botId});
+    }
+
+    this.setState({bot, currencies, currenciesList, fetchingBot});
+  }
+
   render() {
     return (
       <DefaultLayout history={this.props.history}>
-        <div className="total-center" >
-          <div className="container-dashboard-new">
-            <p className="title-session text-center" ><span className="title-ligth">Bot </span> Transactions</p>
-            <Tab>
-              <Pairs/>
-              <Transactions/>
-            </Tab>
-          </div>
-        </div>
+        <Title thinText="Bot" thickText="Transactions"/>
+        <Tabs
+          tabs={[
+            {
+              title: 'Parities Averages',
+              content: (
+                <Pairs
+                  bot={this.props.bot}
+                  currencies={this.state.currencies}
+                  currenciesList={this.state.currenciesList}
+                  reloadCurrencies={this.props.fetchBotCurrencies}
+                />
+              )
+            },
+            {
+              title: 'Transactions Details',
+              content: (
+                <Transactions
+                  currencies={this.state.currencies}
+                  currenciesList={this.state.currenciesList}
+                />
+              )
+            }
+          ]}
+        />
       </DefaultLayout>
     );
   }
 }
 
-class Tab extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      tab: 1,
-    };
-  }
+function mapStateToProps(state) {
+  const bots = state.bots.items;
+  const bot = bots.length ? bots[0] : {};
+  const coins = state.botCurrencies.items;
+  const fetchingBot = state.bots.isFetching;
 
-  render() {
-    return (
-      <div>
-        <div>
-          <div className="box-titles-tabs-items">
-            <p className={this.state.tab === 1 ? 'title-tab-on title-tab' : 'title-tab' }
-              onClick={() => this.setState({ tab: 1 })}>Parities Average</p>
-            <p className={this.state.tab === 2 ? 'title-tab-on title-tab' : 'title-tab'}
-              onClick={() => this.setState({ tab: 2 })}>Transactions List</p>
-          </div>
-          {
-            this.state.tab === 1 ?
-              <div>
-                {this.props.children[0]}
-              </div>
-            :
-              this.state.tab === 2 ?
-                <div>
-                  {this.props.children[1]}
-                </div>
-            :
-            null
-          }
-        </div>
-      </div>
-    );
-  }
+  return {
+    bot,
+    coins,
+    fetchingBot,
+  };
 }
 
-export default Dashboard;
+export default connect(
+  mapStateToProps,
+  {
+    ...botActions,
+    ...botCurrencyActions
+  }
+)(Dashboard);

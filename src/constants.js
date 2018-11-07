@@ -22,20 +22,7 @@ export const MENU = [
   }
 ];
 
-export const CURRENCIES_FILTERS = [
-  {
-    text: 'USD',
-    value: 'usdt'
-  },
-  {
-    text: 'BTC',
-    value: 'btc'
-  },
-  {
-    text: 'LTC',
-    value: 'ltc'
-  }
-];
+export const CURRENCIES_FILTERS = ['btc', 'usdt', 'eth'];
 export const ALL_FILTERS = 'all';
 
 export const PARITIES_TABLE_HEADERS = [

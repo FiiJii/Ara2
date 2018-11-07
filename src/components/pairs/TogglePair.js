@@ -59,8 +59,7 @@ class TogglePair extends React.Component {
           <ToggleButton
             color={props.color}
             onClick={this._handleButtonClick.bind(this)}
-            value={props.status}
-            currencyid={props.currencyId}
+            value={props.value}
           />
         </ToggleButtonContainer>
       </div>

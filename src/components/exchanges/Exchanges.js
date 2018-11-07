@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../../styles/templates/dashboard.css';
 
 class exchanges extends Component {
   constructor(props) {

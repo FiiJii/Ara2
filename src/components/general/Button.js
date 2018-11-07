@@ -29,5 +29,6 @@ export default styled(Button)`
   font-weight: bold;
   margin-right: 10px;
   padding: ${props => props.wide ? '3px 20px' : '3px 6px'};
+  text-transform: ${props => props.textTransform ? props.textTransform : 'none' };
   width: ${props => props.width ? props.width : 'auto'};
 `;
