@@ -75,3 +75,55 @@ export const LOGIN_FORM_INPUTS = [
     type: 'password'
   }
 ];
+
+export const DEFAULT_BOT = {
+  interval: 0,
+  max_lost: 0,
+};
+
+export const SETTINGS_INPUTS = [
+  {
+    label: 'Active',
+    name: 'bot_status',
+    rounded: true,
+    type: 'switch'
+  },
+  {
+    label: 'Interval',
+    min: 0,
+    name: 'time_interval',
+    step: 100,
+    type: 'number'
+  },
+  {
+    label: 'Max Lost ($)',
+    min: 0,
+    name: 'max_lost',
+    step: 100,
+    trunc: true,
+    type: 'number'
+  },
+  {
+    label: 'Verbosity',
+    name: 'db_verbosity',
+    options: [
+      {
+        label: 'Low',
+        value: 'low'
+      },
+      {
+        label: 'Medium',
+        value: 'medium'
+      },
+      {
+        label: 'High',
+        value: 'high'
+      }
+    ],
+    type: 'radio'
+  }
+];
+
+export const INPUT_NUMBER_TYPE = 'number';
+export const INPUT_RADIO_TYPE = 'radio';
+export const INPUT_SWITCH_TYPE = 'switch';

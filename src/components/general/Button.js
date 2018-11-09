@@ -31,7 +31,11 @@ export default styled(Button)`
   text-transform: ${props => props.textTransform ? props.textTransform : 'none' };
   width: ${props => props.width ? props.width : 'auto'};
 
-  &:not(:last-child) {    
+  &:not(:last-child) {
     margin-right: 10px;
+  }
+
+  &:focus {
+    outline: none;
   }
 `;

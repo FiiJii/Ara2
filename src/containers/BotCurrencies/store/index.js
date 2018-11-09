@@ -10,9 +10,7 @@ export const {types, actions, rootReducer} = createResource({
   },
   actions: {
     update: {
-      headers: {
-        
-      }
+      method: 'PUT'
     }
   },
   stripTrailingSlashes: false

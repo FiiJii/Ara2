@@ -73,7 +73,7 @@ class Pairs extends React.Component {
     const data = {botId, symbol};
 
     if (currencies.includes(symbol)) {
-      this.props.updateBotCurrency(data);
+      this.props.deleteBotCurrency(data);
     } else {
       this.props.createBotCurrency(data);
     }
