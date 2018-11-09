@@ -52,14 +52,22 @@ class Settings extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      botId: null,
       currency: '',
       value: 0,
       isFetchingBots: false,
       isCreatingBotCurrencies: false,
       isDeletingBotCurrencies: false,
-      valuerange: '50',
+      bot: {},
     };
+  }
+
+  _handleBotAttrChange(event) {
+    const { checked, name, type, value } = event.target;
+    let { bot } = this.state;
+
+    bot[name] = type === "checkbox" ? checked : value;
+
+    this.setState({bot});
   }
 
   handleChange = event => {
@@ -72,24 +80,28 @@ class Settings extends Component {
   };
 
   removeCurrencyFromBot = (event) => {
-    const { botId } = this.state;
+    const { bot } = this.state;
     const id = event.target.value;
 
-    this.props.deleteBotCurrency({botId, id});
+    this.props.deleteBotCurrency({botId: bot.id, id});
   }
 
   addCurrencyToBot = (event) => {
-    const { currency, botId } = this.state;
+    const { currency, bot } = this.state;
 
-    this.props.createBotCurrency({botId, id: currency});
+    this.props.createBotCurrency({botId: bot.id, id: currency});
   }
 
-  extractBotId = (bots) => {
-    let id = null;
+  extractBot = (bots) => {
+    let bot = {};
     if (bots.length === 1) {
-      id = bots[0].id;
+      bot = bots[0];
     }
-    return id;
+    return bot;
+  }
+
+  _handleSave = (event) => {
+    this.props.updateBot(this.state.bot)
   }
 
   fetchBotCurrencies = (bots, isFetchingBots, botId) => {
@@ -114,19 +126,19 @@ class Settings extends Component {
       isCreatingBotCurrencies,
       isDeletingBotCurrencies
     } = nextProps;
-    const botId = this.extractBotId(bots);
+    const bot = this.extractBot(bots);
 
-    this.fetchBotCurrencies(bots, isFetchingBots, botId);
+    // this.fetchBotCurrencies(bots, isFetchingBots, botId);
 
-    if (
-      (!isCreatingBotCurrencies && this.state.isCreatingBotCurrencies) ||
-      (!isDeletingBotCurrencies && this.state.isDeletingBotCurrencies)
-    ) {
-      this.fetchBots();
-    }
+    // if (
+    //   (!isCreatingBotCurrencies && this.state.isCreatingBotCurrencies) ||
+    //   (!isDeletingBotCurrencies && this.state.isDeletingBotCurrencies)
+    // ) {
+    //   this.fetchBots();
+    // }
 
     this.setState({
-      botId,
+      bot,
       isFetchingBots,
       isCreatingBotCurrencies,
       isDeletingBotCurrencies
@@ -136,6 +148,7 @@ class Settings extends Component {
   render() {
     const { currency } = this.state;
 
+    console.log("bot", this.state.bot);
     return (
       <DefaultLayout history={this.props.history}>
         <div className="total-center">
@@ -152,68 +165,68 @@ class Settings extends Component {
             <Tabsub>
               <div>
                 <div>
-                <form className='add-currency-form' autoComplete="off">
-                  <FormControl className="formControl" variant="outlined">
-                    <InputLabel
-                      className="input-label"
-                      ref={ref => {
-                      this.labelRef = ReactDOM.findDOMNode(ref);
-                      }}
-                      htmlFor="outlined-coin-native-simple"
-                    >
-                      Select coin
-                    </InputLabel>
-                    <Select
-                      className="selector"
-                      native
-                      value={currency}
-                      onChange={this.handleChange}
-                      name="currency"
-                      input={
-                        <FilledInput
-                          className="filled"
-                          labelWidth={this.labelRef ? this.labelRef.offsetWidth : 0}
-                          id="outlined-coin-native-simple"
-                        />
-                      }
-                    >
-                      <option value="" disabled placeholder=""/>
-                        {
-                          this.props.currencies.map((currency, key) => (
-                            <option key={key} value={currency.id}>{currency.name}</option>
-                          ))
-                        }
-                    </Select>
-                  </FormControl>
-                  <button
-                    type="button"
-                    className="button-add"
-                    onClick={this.addCurrencyToBot}
-                  >
-                    Add
-                  </button>
-                </form>
-                <div className="grid-settings-title">
-                  <p className="header-value-details">Coin</p>
-                  <p className="header-value-details">Description</p>
-                  <p className="header-value-details">Action</p>
-                </div>
-                <div className="grid-settings">
-                  {
-                    this.props.botCurrencies.map(({id, name, symbol}, key) =>{
-                      return(
-                        <div key={key}>
-                          <Table
-                            id={id}
-                            name={name}
-                            symbol={symbol}
-                            handleClick={this.removeCurrencyFromBot}
+                  <form className='add-currency-form' autoComplete="off">
+                    <FormControl className="formControl" variant="outlined">
+                      <InputLabel
+                        className="input-label"
+                        ref={ref => {
+                        this.labelRef = ReactDOM.findDOMNode(ref);
+                        }}
+                        htmlFor="outlined-coin-native-simple"
+                      >
+                        Select coin
+                      </InputLabel>
+                      <Select
+                        className="selector"
+                        native
+                        value={currency}
+                        onChange={this.handleChange}
+                        name="currency"
+                        input={
+                          <FilledInput
+                            className="filled"
+                            labelWidth={this.labelRef ? this.labelRef.offsetWidth : 0}
+                            id="outlined-coin-native-simple"
                           />
-                        </div>
-                      )
-                    })
-                  }
-                </div>
+                        }
+                      >
+                        <option value="" disabled placeholder=""/>
+                          {
+                            this.props.currencies.map((currency, key) => (
+                              <option key={key} value={currency.id}>{currency.name}</option>
+                            ))
+                          }
+                      </Select>
+                    </FormControl>
+                    <button
+                      type="button"
+                      className="button-add"
+                      onClick={this.addCurrencyToBot}
+                    >
+                      Add
+                    </button>
+                  </form>
+                  <div className="grid-settings-title">
+                    <p className="header-value-details">Coin</p>
+                    <p className="header-value-details">Description</p>
+                    <p className="header-value-details">Action</p>
+                  </div>
+                  <div className="grid-settings">
+                    {
+                      this.props.botCurrencies.map(({id, name, symbol}, key) =>{
+                        return(
+                          <div key={key}>
+                            <Table
+                              id={id}
+                              name={name}
+                              symbol={symbol}
+                              handleClick={this.removeCurrencyFromBot}
+                            />
+                          </div>
+                        )
+                      })
+                    }
+                  </div>
                 </div>
               </div>
               <div>
@@ -223,49 +236,96 @@ class Settings extends Component {
                     <p className="settings">Active</p>
                   </div>
                   <div>
-                    <Switch
-                      checked={this.state.checkedB}
-                      value="checkedB"
-                      color="primary"
+                    <label className="switch">
+                      <input
+                      type="checkbox"
+                      name="bot_status"
+                      checked={this.state.bot.bot_status}
+                      onChange={this._handleBotAttrChange.bind(this)}
                     />
+                      <span className="slider round"></span>
+                    </label>
                   </div>
                   <div>
                     <p className="settings">Interval</p>
                   </div>
                   <div>
-                    <input className="settings-input" type="number" min="0" max="1" step="0.00001"></input>
+                    <input
+                      className="settings-input"
+                      type="number"
+                      min="0"
+                      max="5000"
+                      step="100"
+                      name="time_interval"
+                      value={this.state.bot.time_interval}
+                      onChange={this._handleBotAttrChange.bind(this)}
+                    ></input>
                   </div>
                   <div>
-                    <p className="settings">Max Lost</p>
+                    <p className="settings">Max Lost ($)</p>
                   </div>
                   <div className="settings-slider">
                     <input
-                      type="range"
+                      type="number"
                       id="range"
-                      min="1"
-                      max="100"
-                      className="slider"
-                      value={this.state.valuerange}
-                      onChange={event => this.setState({valuerange: event.target.value})}
+                      min="100000"
+                      max="200000"
+                      className="settings-input"
+                      name="max_lost"
+                      value={Math.trunc(this.state.bot.max_lost)}
+                      onChange={this._handleBotAttrChange.bind(this)}
+                      step="100"
                     />
-                    <p className="settings-range">Value: {this.state.valuerange} %</p>
                   </div>
                   <div>
                     <p className="settings">Verbosity</p>
                   </div>
                   <div className="verbosity">
                     <label className="checkbox-inline">
-                      <input  type="radio" name="radio"></input>
+                      <input
+                        type="radio"
+                        name="db_verbosity"
+                        value="low"
+                        checked={this.state.bot.db_verbosity === "low"}
+                        onChange={this._handleBotAttrChange.bind(this)}
+                      ></input>
                       <p>Low</p>
                     </label>
                     <label className="checkbox-inline">
-                      <input  type="radio" name="radio"></input>
+                      <input
+                        type="radio"
+                        name="db_verbosity"
+                        value="medium"
+                        checked={this.state.bot.db_verbosity === "medium"}
+                        onChange={this._handleBotAttrChange.bind(this)}
+                      ></input>
                       <p>Mediun</p>
                     </label>
                     <label className="checkbox-inline">
-                      <input  type="radio" name="radio"></input>
+                      <input
+                        type="radio"
+                        name="db_verbosity"
+                        value="high"
+                        checked={this.state.bot.db_verbosity === "high"}
+                        onChange={this._handleBotAttrChange.bind(this)}
+                      ></input>
                       <p>High</p>
                     </label>
+                  </div>
+                </div>
+                <div className="settings-buttons">
+                  <div className="settings-options cancel">
+                    <button className="button-option">
+                      Cancel
+                    </button>
+                  </div>
+                  <div  className="settings-options save">
+                    <button
+                      className="button-option"
+                      onClick={this._handleSave.bind(this)}
+                    >
+                      Save
+                    </button>
                   </div>
                 </div>
               </TabContainer>

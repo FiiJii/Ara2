@@ -7,5 +7,11 @@ export const {types, actions, rootReducer} = createResource({
   headers: {
     Authorization: 'Bearer ' + localStorage.getItem("access_token")
   },
+  actions: {
+    update: {
+      mehotd: 'PUT',
+      url: BOTS_URL+":id/"
+    }
+  },
   stripTrailingSlashes: false
 });
