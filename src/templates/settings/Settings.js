@@ -1,7 +1,9 @@
 import React from 'react';
+import Button from '../../components/general/Button';
 import DefaultLayout from '../../layouts/DefaultLayout';
 import FormComponent from '../../components/base/FormComponent';
 import FormGrid from '../../components/form/FormGrid';
+import Loader from '../../components/general/Loader';
 import Title from '../../components/general/Title';
 import TotalCenter from '../../components/general/TotalCenter';
 import styled from 'styled-components';
@@ -11,36 +13,14 @@ import { actions as botActions } from '../../containers/Bots/store';
 
 const ButtonsContainer = styled.div`
   display: flex;
-  margin-left: 60px;
+  justify-content: center;
   padding: 10px;
-  text-align: center;
 `;
 
 const ButtonContainer = styled.div`
   padding: 10px 10px;
 `;
 
-const Button = styled.button`
-  width: 80px;
-  max-width: 320px;
-  height: 30px;
-  border: none;
-  border-radius: 15px;
-  background: #64C0EA;
-  text-align: center;
-  line-height: 30px;
-  color: #FFF;
-  font-family: 'Montserrat';
-  font-size: 18px;
-  font-weight: 600;
-  font-weight: bold;
-  display: inline-block;
-  margin-right: 30px;
-
-  &:focus {
-    outline: none;
-  }
-`;
 
 // isCreatingBotCurrencies: false,
 // isDeletingBotCurrencies: false,
@@ -172,12 +152,12 @@ class Settings extends FormComponent {
     return bot;
   }
 
-  _handleSave = (event) => {
-    this.props.updateBot(this.state.bot)
-  }
-
   fetchBots = () => {
     this.props.fetchBots(null, {query: {paginate: false}});
+  }
+
+  isLoading = () => {
+    return this.props.isFetchingBots || this.props.isUpdatingBot;
   }
 
   componentDidMount() {
@@ -197,6 +177,10 @@ class Settings extends FormComponent {
     });
   }
 
+  _handleSave(event) {
+    this.props.updateBot(this.state.bot)
+  }
+
   render() {
     console.log("bot", this.state.bot);
     return (
@@ -204,41 +188,54 @@ class Settings extends FormComponent {
         <TotalCenter>
           <div>
             <Title centered={true} thinText="Bot" thickText="Settings"/>
-            <FormGrid>
-              {this._renderInputs(SETTINGS_INPUTS)}
-            </FormGrid>
+            {this.isLoading() ?
+              <Loader/> :
+              <div>
+                <FormGrid>
+                  {this._renderInputs(SETTINGS_INPUTS)}
+                </FormGrid>
 
-            <ButtonsContainer>
-              <ButtonContainer>
-                <Button
-                  onClick={() => this.props.history.push('/dashboard')}
-                >
-                  Cancel
-                </Button>
-              </ButtonContainer>
+                <ButtonsContainer>
+                  <ButtonContainer>
+                    <Button
+                      active={true}
+                      medium={true}
+                      onClick={() => this.props.history.push('/dashboard')}
+                      width="90px"
+                    >
+                      Cancel
+                    </Button>
+                  </ButtonContainer>
 
-              <ButtonContainer>
-                <Button
-                  onClick={this._handleSave.bind(this)}
-                >
-                  Save
-                </Button>
-              </ButtonContainer>
-            </ButtonsContainer>
+                  <ButtonContainer>
+                    <Button
+                      active={true}
+                      medium={true}
+                      onClick={this._handleSave.bind(this)}
+                      width="90px"
+                    >
+                      Save
+                    </Button>
+                  </ButtonContainer>
+                </ButtonsContainer>
+              </div>
+            }
           </div>
         </TotalCenter>
       </DefaultLayout>
-    )
+    );
   }
 }
 
 function mapStateToProps(state) {
+  const isUpdatingBot = state.bots.isUpdating;
   const isFetchingBots = state.bots.isFetching;
   const bots = state.bots.items;
 
   return {
     bots,
-    isFetchingBots
+    isFetchingBots,
+    isUpdatingBot
   }
 }
 

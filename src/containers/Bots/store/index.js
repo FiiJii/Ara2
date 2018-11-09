@@ -9,7 +9,7 @@ export const {types, actions, rootReducer} = createResource({
   },
   actions: {
     update: {
-      mehotd: 'PUT',
+      method: 'PUT',
       url: BOTS_URL+":id/"
     }
   },

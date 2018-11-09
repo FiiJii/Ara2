@@ -5,7 +5,8 @@ export default styled.div`
   font-family: 'Montserrat';
   font-size: 14pt;
   font-weight: 600;
-  margin-right: 25px;
+  margin-right: 10px;
   padding: 10px;
+  padding-right: 0;
   text-align: right;
 `;
