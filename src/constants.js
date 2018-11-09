@@ -8,6 +8,10 @@ export const BOT_PAIRS_URL = API_URL+'config/bot/:botId/pairs/';
 export const CURRENCIES_URL = API_URL+'config/currency/';
 export const TRANSACTION_DETAILS_URL = API_URL+'trading/transaction_details/';
 
+export const AUTH_HEADERS = {
+  Authorization: 'Bearer ' + localStorage.getItem("access_token")
+};
+
 export const MENU = [
   {
     text: 'HOME',

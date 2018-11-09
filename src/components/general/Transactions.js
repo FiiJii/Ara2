@@ -48,7 +48,7 @@ class Transactions extends React.Component {
   _parseTransactionContent(transaction) {
     return [
       transaction.creation_date.split('T')[1],
-      transaction.parity.symbol,
+      transaction.parity.name_symbol,
       transaction.parity.name,
       transaction.okex_order,
       transaction.action,

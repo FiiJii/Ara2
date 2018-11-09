@@ -4,9 +4,7 @@ import Opacity from '../general/Opacity';
 import { Link } from "react-router-dom";
 
 export default ({opacity, route, text, ...props}) => {
-  let content = (
-    <Link to={`/${route}`}>{text}</Link>
-  );
+  let content = text;
 
   if (opacity) {
     content = (
@@ -16,7 +14,7 @@ export default ({opacity, route, text, ...props}) => {
 
   return (
     <StyledOption {...props}>
-      {content}
+      <Link to={`/${route}`}>{content}</Link>
     </StyledOption>
   );
 }

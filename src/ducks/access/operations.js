@@ -1,4 +1,4 @@
-import { LOGIN_URL } from '../../constants';
+import { AUTH_HEADERS, LOGIN_URL } from '../../constants';
 import * as actions from "./actions";
 
 // Esta función se encarga de realizar la llamada al api para obtener la lista de las configuraciones de seguridad
@@ -7,7 +7,7 @@ const login = (_username, _password, successLogin) => (dispatch) => {
 
   let body = new FormData();
 
-  body.append('username',_username);
+  body.append('username', _username);
   body.append('password', _password);
 
   let options = {
@@ -25,6 +25,7 @@ const login = (_username, _password, successLogin) => (dispatch) => {
   }).then((response) => {
     if (response !== undefined) {
       dispatch(actions.loginFinish(response.access,response.refresh,true));
+      AUTH_HEADERS['Authorization'] = `Bearer ${response.access}`;
       localStorage.setItem("access_token", response.access);
       successLogin(true);
     }
