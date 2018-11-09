@@ -6,8 +6,7 @@ import StyledContent from '../components/layouts/StyledContent';
 export default ({children, hideHeader, history, selectedOption}) => (
   <StyledContainer>
     {hideHeader ? '' : <Header history={history} selectedOption={selectedOption}/>}
-    <StyledContent>
-      {children}
-    </StyledContent>
+
+    {hideHeader ? children : (<StyledContent>{children}</StyledContent>)}
   </StyledContainer>
 );
