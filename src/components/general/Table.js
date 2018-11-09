@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../styles/components/card.css';
+// import '../../styles/components/card.css';
 
 const Table = ({id, symbol, name, handleClick}) => {
   return (

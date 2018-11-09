@@ -8,5 +8,12 @@ export const {types, actions, rootReducer} = createResource({
   headers: {
     Authorization: 'Bearer ' + localStorage.getItem("access_token")
   },
+  actions: {
+    update: {
+      headers: {
+        
+      }
+    }
+  },
   stripTrailingSlashes: false
 });

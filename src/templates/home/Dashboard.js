@@ -4,16 +4,10 @@ import Pairs from '../../components/general/Pairs';
 import Tabs from '../../components/tabs';
 import Title from '../../components/general/Title';
 import Transactions from '../../components/general/Transactions';
+import { coinMapper, coinFilter } from '../../global_functions';
 import { connect } from 'react-redux';
 import { actions as botActions } from '../../containers/Bots/store';
 import { actions as botCurrencyActions } from '../../containers/BotCurrencies/store';
-
-const coinMapper = coin => {
-  return coin.name ? coin.name : Object.keys(coin)[0]
-};
-const coinFilter = coin => {
-  return coin.status ? coin.status : coin[Object.keys(coin)[0]];
-};
 
 class Dashboard extends React.Component {
   constructor(props){
@@ -49,8 +43,8 @@ class Dashboard extends React.Component {
 
   render() {
     return (
-      <DefaultLayout history={this.props.history}>
-        <Title thinText="Bot" thickText="Transactions"/>
+      <DefaultLayout history={this.props.history} selectedOption="dashboard">
+        <Title centered={true} thinText="Bot" thickText="Transactions"/>
         <Tabs
           tabs={[
             {

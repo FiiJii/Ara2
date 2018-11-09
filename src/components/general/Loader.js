@@ -1,12 +1,14 @@
 import React from 'react';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import styled from 'styled-components';
 
-import '../../styles/components/loader.css';
+const StyledLoader = styled.div`
+  padding: 150px 0;
+  text-align: center;
+`;
 
-const Loader = (props) => (
-  <div className="loader">
+export default () => (
+  <StyledLoader>
     <CircularProgress size={50} />
-  </div>
+  </StyledLoader>
 );
-
-export default Loader;

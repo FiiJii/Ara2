@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Table from '../../components/general/Table';
 import { MdArrowBack } from 'react-icons/md';
 import Tooltip from '@material-ui/core/Tooltip';
-import { Grid, Row, Col } from 'react-bootstrap';
 import { actions as currencyActions } from '../../containers/Currencies/store';
 import { actions as botActions } from '../../containers/Bots/store';
 import { actions as botCurrencyActions } from '../../containers/BotCurrencies/store';
@@ -11,26 +10,15 @@ import Switch from '@material-ui/core/Switch';
 import DefaultLayout from '../../layouts/DefaultLayout';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import AppBar from '@material-ui/core/AppBar';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
-import '../../styles/templates/settings.css';
 import Tabsub from '../../components/tabs/Tabsub';
-
-
-import { render } from 'react-dom';
 import ReactDOM from 'react-dom';
-
-import Input from '@material-ui/core/Input';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
 import FilledInput from '@material-ui/core/FilledInput';
 import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+
+// import '../../styles/templates/settings.css';
 
 const styles = theme => ({
   // root: {
@@ -146,8 +134,7 @@ class Settings extends Component {
   }
 
   render() {
-    const { classes } = this.props;
-    const { value, currency } = this.state;
+    const { currency } = this.state;
 
     return (
       <DefaultLayout history={this.props.history}>
@@ -290,10 +277,6 @@ class Settings extends Component {
     )
   }
 }
-
-Settings.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
 
 function mapStateToProps(state) {
   const currencies = state.currencies.items;

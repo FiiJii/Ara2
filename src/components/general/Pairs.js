@@ -1,7 +1,7 @@
 import React from 'react';
 import FilteredTable from '../tables/FilteredTable';
 import TogglePair from '../pairs/TogglePair';
-import { ACTIVE_PAIR, CURRENCIES_FILTERS, PARITIES_TABLE_HEADERS } from '../../constants';
+import { ACTIVE_PAIR, PARITIES_TABLE_HEADERS } from '../../constants';
 import { connect } from 'react-redux';
 import { formatCurrency } from '../../global_functions';
 import { actions as botActions } from '../../containers/Bots/store';
@@ -73,7 +73,7 @@ class Pairs extends React.Component {
     const data = {botId, symbol};
 
     if (currencies.includes(symbol)) {
-      this.props.deleteBotCurrency(data);
+      this.props.updateBotCurrency(data);
     } else {
       this.props.createBotCurrency(data);
     }

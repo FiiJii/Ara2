@@ -15,6 +15,10 @@ const StyledTab = styled.button`
   padding: 0 25px;
   text-align: center;
   transition: border-bottom .65s;
+
+  &:focus {
+    outline: none;
+  }
 `;
 
 export default ({children, currentTab, onClick, value}) => (

@@ -1,5 +1,6 @@
 export const BASE_URL = 'http://api-trading.arawato.co';
 export const API_URL = BASE_URL+'/api/';
+export const LOGIN_URL = API_URL+'auth/token/';
 export const BOTS_URL = API_URL+'config/bot/';
 export const BOT_CURRENCIES_URL = API_URL+'config/bot/:botId/coins/';
 export const BOT_NEW_TRANSACTION_URL = API_URL+'config/currency/averages/';
@@ -59,3 +60,18 @@ export const CURRENCY_FORMATTER = new Intl.NumberFormat('en-GB', {
 });
 
 export const ACTIVE_PAIR = 'active';
+
+export const CHECKED_INPUT_TYPES = ['checkbox'];
+
+export const LOGIN_FORM_INPUTS = [
+  {
+    name: 'email',
+    placeholder: 'Username - Email',
+    type: 'text'
+  },
+  {
+    name: 'password',
+    placeholder: 'Password',
+    type: 'password'
+  }
+];

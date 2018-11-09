@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import '../../styles/templates/settings.css';
+// import '../../styles/templates/settings.css';
 
 class Tabsub extends Component {
   constructor(props) {

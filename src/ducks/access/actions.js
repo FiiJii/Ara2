@@ -20,6 +20,7 @@ const loginFinish = (data,token,bool) => ({
 const logoutReset = () => ({
   type: types.USER_LOGOUT
 })
+
 export {
   loginInit,
   loginFinish,

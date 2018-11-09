@@ -27,8 +27,11 @@ export default styled(Button)`
   font-family: 'Montserrat';
   font-size: ${props => props.medium ? '18px' : '14px'};
   font-weight: bold;
-  margin-right: 10px;
   padding: ${props => props.wide ? '3px 20px' : '3px 6px'};
   text-transform: ${props => props.textTransform ? props.textTransform : 'none' };
   width: ${props => props.width ? props.width : 'auto'};
+
+  &:not(:last-child) {    
+    margin-right: 10px;
+  }
 `;

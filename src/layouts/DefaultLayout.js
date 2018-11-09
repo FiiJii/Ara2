@@ -1,18 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Header from '../components/header';
-import styled from 'styled-components';
+import StyledContainer from '../components/layouts/StyledContainer';
+import StyledContent from '../components/layouts/StyledContent';
 
-const StyledContainer = styled.div`
-  max-width: 1400px;
-  padding: 20px 15px;
-  width: 100%;
-`;
-
-export default ({children, history}) => (
-  <div>
-    <Header history={history}/>
-    <StyledContainer>
+export default ({children, hideHeader, history, selectedOption}) => (
+  <StyledContainer>
+    {hideHeader ? '' : <Header history={history} selectedOption={selectedOption}/>}
+    <StyledContent>
       {children}
-    </StyledContainer>
-  </div>
+    </StyledContent>
+  </StyledContainer>
 );

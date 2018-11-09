@@ -1,94 +1,92 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
+import BasicLayout from '../../layouts/BasicLayout';
+import Button from '../../components/login/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import { loginSuccess } from '../../ducks/access';
-import '../../styles/templates/login.css';
+import FormComponent from '../../components/base/FormComponent';
+import FormGroup from '../../components/login/FormGroup';
+import Input from '../../components/login/Input';
+import InputsContainer from '../../components/login/InputsContainer';
+import LoginContainer from '../../components/login/LoginContainer';
+import Title from '../../components/general/Title';
+import TotalCenter from '../../components/general/TotalCenter';
+import { LOGIN_FORM_INPUTS } from '../../constants';
+import { connect } from 'react-redux';
+import { login } from '../../ducks/access';
 
-
-class Login extends Component {
+class Login extends FormComponent {
   constructor(props){
-    super(props)
-    this.state={
+    super(props);
+    this.state = {
       email: "",
       password:"",
-      load: false
-    }
-  }
-  loginActive = (e) => {
-   var tecla = (document.all) ? e.keyCode : e.which;
-    if (tecla == 13) {
-      this.props.loginSuccess(this.state.email, this.state.password, this.successLogin)
-      this.setState({ load: true })
+      loading: false
     };
-    if (this.state.email === "" && this.state.password === "") {
-      return
-    }
-    if (this.state.email === "" ) {
-      return
-    }
-    // else{
-    //   var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    //   if(!re.test(String(this.state.email).toLowerCase())){
-    //     console.log("email-incorrecto");
-    //     return
-    //   }
-    // }
-    if (this.state.password === "" ) {
-      console.log("password");
-      return
-    }
   }
-  successLogin = (bool) =>{
-    if (bool === true) {
-       this.props.history.push('/dashboard')
-       this.setState({
-         email: "",
-         password:"",
-         load: false
-       })
-    }
-  }
-    render() {
-        return (
-          <div className="container-login" history={this.props.history}>
-            <div className="group-form">
-              <p className="title-session text-white "><span className="title-ligth">BOT </span>TRADING.</p>
-              <div className="margin-top total-center">
-                <input
-                  className="form-login"
-                   type="text"
-                   placeholder="Username - Email"
-                   value={this.state.email}
-                   onChange={(event) => this.setState({email: event.target.value})}
-                   />
-              </div>
-              <div className="total-center">
-                <input
-                  className="form-login"
-                  type="password"
-                  placeholder="Password"
-                  value={this.state.password}
-                  onChange={(event) => this.setState({password: event.target.value})}
-                  onKeyPress={this.loginActive}
-                  />
-              </div>
-              {
-                this.state.load === true ?
-                <div className="total-center">
-                  <CircularProgress/>
-                </div>
-                :
-                <button type="button" className="button" onClick={this.loginActive}>ENTER</button>
-              }
-            </div>
-          </div>
-        )
-    }
-}
-const mapStateToProps = (state) => {
-  console.log(state);
-  return {
 
+  login = () => {
+    const { email, password } = this.state;
+
+    if (email === "" || password === "") {
+      return;
+    } else {
+      this.setState({loading: true}, () => this.props.login(
+        this.state.email,
+        this.state.password,
+        this._handleLoginSuccess.bind(this)
+      ));
+    }
+  }
+
+  _handleKeyPress(e) {
+    let tecla = (document.all) ? e.keyCode : e.which;
+
+    if (tecla === 13) {
+      this.login();
+    }
+  }
+
+  _handleLoginSuccess(bool) {
+    if (bool === true) {
+      this.props.history.push('/dashboard');
+      this.setState({
+        email: "",
+        password: "",
+        loading: false
+      });
+    }
+  }
+
+  render() {
+    return (
+      <BasicLayout history={this.props.history}>
+        <LoginContainer>
+          <FormGroup>
+            <Title centered={true} textTransform="uppercase" thinText="bot" thickText="trading"/>
+            <InputsContainer>
+              {LOGIN_FORM_INPUTS.map(({name, ...props}, key) => (
+                <TotalCenter key={key}>
+                  <Input
+                    name={name}
+                    onChange={this._handleInputChange.bind(this)}
+                    onKeyPress={this._handleKeyPress.bind(this)}
+                    value={this.state[name]}
+                    {...props}
+                  />
+                </TotalCenter>
+              ))}
+            </InputsContainer>
+            <TotalCenter>
+              {
+                this.state.loading === true ?
+                  <CircularProgress/> :
+                  <Button type="button" onClick={this.login}>ENTER</Button>
+              }
+            </TotalCenter>
+          </FormGroup>
+        </LoginContainer>
+      </BasicLayout>
+    );
   }
 }
-export default connect(mapStateToProps,{ loginSuccess })(Login)
+
+export default connect(null, {login})(Login);

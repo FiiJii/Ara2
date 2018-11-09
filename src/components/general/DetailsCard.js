@@ -1,6 +1,6 @@
 import React from 'react';
 import Tooltip from '@material-ui/core/Tooltip';
-import '../../styles/components/details-card.css';
+// import '../../styles/components/details-card.css';
 
 const DetailsCard = (props) => {
   return (
